@@ -1,8 +1,8 @@
-import { View, Text, FlatList } from 'react-native';
 import { useState, useEffect } from 'react';
 import { fetchAllTales } from '../util/http';
 import Loading from '../components/ui/Loading';
 import Error from '../components/ui/Error';
+import AllTalesList from '../components/Tales/AllTalesList';
 
 function Home() {
     const [allTales, setAllTales] = useState([]);
@@ -36,12 +36,7 @@ function Home() {
     }
 
     return (
-        <View>
-            <FlatList
-                data={allTales}
-                renderItem={({ item }) => <Text>{item.title}</Text>}
-            />
-        </View>
+        <AllTalesList allTales={allTales}/>
     );
 }
 

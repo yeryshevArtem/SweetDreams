@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 function TaleItem({ title }) {
     return (
         <View style={styles.container}>
-            <View style={styles.imageBox}></View>
+            <Image source={require('../../assets/Hansel-and-gretel-rackham.jpg')} style={styles.image} />
             <View style={styles.titleBox}>
                 <Text>{title}</Text>
             </View>
@@ -15,16 +15,16 @@ export default TaleItem;
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 10,
-        marginVertical: 10
-    },
-    imageBox: {
-        height: 150,
         width: 150,
-        borderRadius: 10,
-        borderWidth: 2,
+        marginHorizontal: 10,
+        marginVertical: 10,
     },
     titleBox: {
         marginVertical: 10
+    },
+    image: {
+        width: 150,
+        height: 150,
+        borderRadius: 10
     }
 });

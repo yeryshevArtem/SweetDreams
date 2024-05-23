@@ -6,7 +6,6 @@ import Home from './screens/Home';
 import Favourites from './screens/Favourites';
 import Profile from './screens/Profile';
 
-
 const BottomTab = createBottomTabNavigator();
 
 export default function App() {

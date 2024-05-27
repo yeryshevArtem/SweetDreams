@@ -8,7 +8,9 @@ function Error({ message=DEFAULT_MESSAGE, onConfirm, btnConfirmTitle=BUTTON_CONF
         <View style={styles.container}>
             <Text>An error occured</Text>
             <Text>{message}</Text>
-            <Button onPress={onConfirm} title={btnConfirmTitle} />
+            {
+                onConfirm && <Button onPress={onConfirm} title={btnConfirmTitle} />
+            }
         </View>
     );
 }

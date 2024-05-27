@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getStorage, ref } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 import { getDatabase } from "firebase/database";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -22,7 +22,5 @@ const project = initializeApp(firebaseConfig);
 
 const storage = getStorage(project);
 const db = getDatabase(project);
-
-// const storageRef = ref(storage);
 
 export { storage, db };

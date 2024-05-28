@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { useNavigation } from '@react-navigation/native';
+// firebase
 import { storage } from '../../firebase/storage';
+// ui
 import Loading from '../ui/Loading';
 import Error from '../ui/Error';
+// constants
 import { GlobalStyles } from '../../constants/styles';
 
 function TaleItem({ title, imageUrl, id }) {
@@ -27,7 +30,7 @@ function TaleItem({ title, imageUrl, id }) {
                 setIsFetching(false);
                 setError(error);
             });
-    }, [imageUrl, title]);
+    }, [imageUrl]);
 
 
     const talePressHandler = () => {

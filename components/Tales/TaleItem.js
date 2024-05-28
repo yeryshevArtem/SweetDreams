@@ -7,7 +7,7 @@ import Loading from '../ui/Loading';
 import Error from '../ui/Error';
 import { GlobalStyles } from '../../constants/styles';
 
-function TaleItem({ title, imageUrl, id, audioUrl }) {
+function TaleItem({ title, imageUrl, id }) {
     const [imgUri, setImgUri] = useState('');
     const [isFetching, setIsFetching] = useState(false);
     const [error, setError] = useState(null);
@@ -32,7 +32,7 @@ function TaleItem({ title, imageUrl, id, audioUrl }) {
 
     const talePressHandler = () => {
         navigation.navigate('TaleDetail', { taleId: id });
-    }
+    };
 
     return (
         <Pressable style={({ pressed }) => pressed && styles.pressed} onPress={talePressHandler}>

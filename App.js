@@ -26,14 +26,17 @@ function TalesOverview() {
           headerStyle: {
             backgroundColor: GlobalStyles.colors.primary2
           },
+          headerTintColor: GlobalStyles.colors.primary1,
           headerShown: false,
-          headerTintColor: GlobalStyles.colors.primary1
         }}
       />
       <Stack.Screen
         name="TaleDetail"
         component={TaleDetail}
         options={{
+          headerStyle: {
+            backgroundColor: GlobalStyles.colors.primary2
+          },
           presentation: "modal"
         }}
       />
@@ -47,11 +50,12 @@ export default function App() {
       <StatusBar style="light" />
       <TalesContextProvider>
         <NavigationContainer>
-          <BottomTab.Navigator screenOptions={{
-            tabBarActiveTintColor: GlobalStyles.colors.primary1,
-            tabBarInactiveTintColor: GlobalStyles.colors.primary3,
-            tabBarStyle: { backgroundColor: GlobalStyles.colors.primary2 }
-          }}>
+          <BottomTab.Navigator
+            screenOptions={{
+              tabBarActiveTintColor: GlobalStyles.colors.primary1,
+              tabBarInactiveTintColor: GlobalStyles.colors.primary3,
+              tabBarStyle: { backgroundColor: GlobalStyles.colors.primary2 }
+            }}>
             <BottomTab.Screen
               name="Home"
               component={TalesOverview}

@@ -3,7 +3,10 @@ import { fetchAllTales } from '../util/http';
 import Loading from '../components/ui/Loading';
 import Error from '../components/ui/Error';
 import TalesList from '../components/Tales/TalesList';
+// store
 import { TalesContext } from '../store/tales-context';
+// UI 
+import Background from '../components/ui/Background';
 
 function AllTales() {
     const [isLoading, setIsLoading] = useState(false);
@@ -28,16 +31,17 @@ function AllTales() {
         setError(null);
     };
 
-    if (isLoading) {
-        return <Loading />
-    }
-
-    if (error && !isLoading) {
-        return <Error message="Cannot fetch all tales, try to reload the page." onConfirm={closeError} />
-    }
-
     return (
-        <TalesList allTales={talesCtx.tales}/>
+        <Background>
+            {
+                error && !isLoading && <Error message="Cannot fetch all tales, try to reload the page." onConfirm={closeError} />
+            }
+            {
+                isLoading && <Loading />
+            }
+            <TalesList allTales={talesCtx.tales}/>
+        </Background>
+
     );
 }
 

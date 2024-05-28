@@ -1,6 +1,5 @@
 import { FlatList, View, StyleSheet } from 'react-native';
 import TaleItem from './TaleItem';
-import Background from '../ui/Background';
 
 function renderAllTalesItem({ item }) {
     return <TaleItem title={item.title} imageUrl={item.imageUrl} id={item.id} audioUrl={item.audioUrl} />;
@@ -8,16 +7,14 @@ function renderAllTalesItem({ item }) {
 
 function AllTalesList({ allTales }) {
     return (
-        <Background>
-            <View style={styles.container}>
-                <FlatList
-                    data={allTales}
-                    renderItem={renderAllTalesItem}
-                    keyExtractor={(item) => item.id}
-                    horizontal={true}
-                />
-            </View>
-        </Background>
+        <View style={styles.container}>
+            <FlatList
+                data={allTales}
+                renderItem={renderAllTalesItem}
+                keyExtractor={(item) => item.id}
+                horizontal={true}
+            />
+        </View>
     );
 };
 

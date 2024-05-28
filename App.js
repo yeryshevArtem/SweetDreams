@@ -1,18 +1,51 @@
 import { StatusBar } from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import Home from './screens/Home';
+import AllTales from './screens/AllTales';
+import TaleDetail from './screens/TaleDetail';
 import Favourites from './screens/Favourites';
 import Profile from './screens/Profile';
 import { GlobalStyles } from './constants/styles';
+// store
+import TalesContextProvider from './store/tales-context';
 
 const BottomTab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+function TalesOverview() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="TalesList"
+        component={AllTales}
+        options={{
+          headerTitle: "The most interesting tales",
+          headerTitleAlign: "left",
+          headerStyle: {
+            backgroundColor: GlobalStyles.colors.primary2
+          },
+          headerShown: false,
+          headerTintColor: GlobalStyles.colors.primary1
+        }}
+      />
+      <Stack.Screen
+        name="TaleDetail"
+        component={TaleDetail}
+        options={{
+          presentation: "modal"
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export default function App() {
   return (
     <>
       <StatusBar style="light" />
+      <TalesContextProvider>
         <NavigationContainer>
           <BottomTab.Navigator screenOptions={{
             tabBarActiveTintColor: GlobalStyles.colors.primary1,
@@ -21,14 +54,14 @@ export default function App() {
           }}>
             <BottomTab.Screen
               name="Home"
-              component={Home}
+              component={TalesOverview}
               options={{
-                title: "Home Page",
+                title: "All Tales",
                 tabBarLabel: "Home Page",
                 tabBarIcon: ({ color, size }) => <Ionicons color={color} size={size} name="home" />,
                 headerStyle: {
                   backgroundColor: GlobalStyles.colors.primary2,
-                  
+
                 },
                 headerTintColor: GlobalStyles.colors.primary1
               }}
@@ -53,6 +86,7 @@ export default function App() {
             />
           </BottomTab.Navigator>
         </NavigationContainer>
+      </TalesContextProvider>
     </>
   );
 }

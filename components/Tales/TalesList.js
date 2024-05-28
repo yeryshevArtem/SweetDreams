@@ -3,7 +3,7 @@ import TaleItem from './TaleItem';
 import Background from '../ui/Background';
 
 function renderAllTalesItem({ item }) {
-    return <TaleItem title={item.title} imageUrl={item.imageUrl} />
+    return <TaleItem title={item.title} imageUrl={item.imageUrl} id={item.id} audioUrl={item.audioUrl} />;
 }
 
 function AllTalesList({ allTales }) {

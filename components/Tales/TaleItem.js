@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { ref, getDownloadURL } from 'firebase/storage';
+import { useNavigation } from '@react-navigation/native';
 import { storage } from '../../firebase/storage';
 import Loading from '../ui/Loading';
 import Error from '../ui/Error';
 import { GlobalStyles } from '../../constants/styles';
 
-function TaleItem({ title, imageUrl }) {
+function TaleItem({ title, imageUrl, id, audioUrl }) {
     const [imgUri, setImgUri] = useState('');
     const [isFetching, setIsFetching] = useState(false);
     const [error, setError] = useState(null);
+
+    const navigation = useNavigation();
 
     useEffect(() => {
         const imgReference = ref(storage, imageUrl);
@@ -26,27 +29,37 @@ function TaleItem({ title, imageUrl }) {
             });
     }, [imageUrl, title]);
 
+
+    const talePressHandler = () => {
+        navigation.navigate('TaleDetail', { taleId: id });
+    }
+
     return (
-        <View style={styles.container}>
-            {
-                isFetching && <Loading />
-            }
-            {
-                imgUri && <Image source={{ uri: imgUri }} style={styles.image} />
-            }
-            {
-                error && !isFetching && <Error message="Cannot upload tale image."/>
-            }
-            <View style={styles.titleBox}>
-                <Text style={styles.titleText}>{title}</Text>
+        <Pressable style={({ pressed }) => pressed && styles.pressed} onPress={talePressHandler}>
+            <View style={styles.container}>
+                {
+                    isFetching && <Loading />
+                }
+                {
+                    imgUri && <Image source={{ uri: imgUri }} style={styles.image} />
+                }
+                {
+                    error && !isFetching && <Error message="Cannot upload tale image." />
+                }
+                <View style={styles.titleBox}>
+                    <Text style={styles.titleText}>{title}</Text>
+                </View>
             </View>
-        </View>
+        </Pressable>
     );
 }
 
 export default TaleItem;
 
 const styles = StyleSheet.create({
+    pressed: {
+        opacity: 0.75
+    },
     container: {
         width: 150,
         height: 200,

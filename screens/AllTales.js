@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { fetchAllTales } from '../util/http';
 import Loading from '../components/ui/Loading';
 import Error from '../components/ui/Error';
-import AllTalesList from '../components/Tales/AllTalesList';
+import TalesList from '../components/Tales/TalesList';
+import { TalesContext } from '../store/tales-context';
 
-function Home() {
-    const [allTales, setAllTales] = useState([]);
+function AllTales() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const talesCtx = useContext(TalesContext);
 
     useEffect(() => {
         async function getAllTales() {
             try {
                 setIsLoading(true);
                 const allTalesTemp = await fetchAllTales();
-                setAllTales(allTalesTemp);
+                talesCtx.setTales(allTalesTemp);
             } catch(err) {
                 setError(err);
             }
@@ -36,8 +37,8 @@ function Home() {
     }
 
     return (
-        <AllTalesList allTales={allTales}/>
+        <TalesList allTales={talesCtx.tales}/>
     );
 }
 
-export default Home;
+export default AllTales;

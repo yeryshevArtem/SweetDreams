@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Text } from 'react-native';
 import { Audio } from "expo-av";
+import Slider from "@react-native-community/slider";
 // firebase
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/storage';
@@ -10,6 +11,8 @@ import Loading from "./Loading";
 import IconButton from "./IconButton";
 // constants 
 import { GlobalStyles } from "../../constants/styles";
+// utils
+import { formatTime } from '../../util/time';
 
 function Player({ imageUrl, audioUrl }) {
     // uri related state
@@ -66,6 +69,9 @@ function Player({ imageUrl, audioUrl }) {
     }
 
     async function loadAudio() {
+        if (sound) {
+            unloadAudio();
+        }
         const { sound } = await Audio.Sound.createAsync(
             { uri: audioUri },
             { shouldPlay: true },
@@ -73,6 +79,7 @@ function Player({ imageUrl, audioUrl }) {
 
         );
         setSound(sound);
+
     }
 
     function onPlaybackStatusUpdate(playbackStatus) {
@@ -96,6 +103,12 @@ function Player({ imageUrl, audioUrl }) {
         }
     };
 
+    async function handleSliderChange(value) {
+        if (sound) {
+            await sound.setPositionAsync(value);
+        }
+    }
+
     const playBack = () => { };
 
     const playForward = () => { };
@@ -112,6 +125,15 @@ function Player({ imageUrl, audioUrl }) {
                 {
                     error && !isFetching && <Error message="Cannot upload player logo." />
                 }
+                <Slider
+                    style={styles.slider}
+                    value={status.positionMillis}
+                    maximumValue={status.durationMillis}
+                    onValueChange={handleSliderChange}
+                    minimumTrackTintColor={GlobalStyles.colors.primary3}
+                    maximumTrackTintColor={GlobalStyles.colors.primary2}
+                />
+                <Text style={styles.timeline}>{formatTime(status.positionMillis)} / {formatTime(status.durationMillis)}</Text>
                 <View style={styles.controlPanel}>
                     <IconButton onPress={playBack} size={75} color={GlobalStyles.colors.primary3} icon="play-back-circle" />
                     <IconButton onPress={handlePlayPause} size={75} color={GlobalStyles.colors.primary3} icon={status.isPlaying ? "pause-circle" : "play-circle"} />
@@ -138,8 +160,16 @@ const styles = StyleSheet.create({
         height: 250,
         borderRadius: 5
     },
+    slider: {
+        marginTop: 50,
+        width: 250,
+        height: 40,
+    },
     controlPanel: {
         flexDirection: 'row',
         marginVertical: 30
+    },
+    timeline: {
+        color: GlobalStyles.colors.primary1
     }
 })

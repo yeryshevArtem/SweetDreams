@@ -12,46 +12,93 @@ import IconButton from "./IconButton";
 import { GlobalStyles } from "../../constants/styles";
 
 function Player({ imageUrl, audioUrl }) {
-    const [sound, setSound] = useState();
+    // uri related state
     const [imgUri, setImgUri] = useState('');
+    const [audioUri, setAudioUri] = useState('');
     const [isFetching, setIsFetching] = useState(false);
     const [error, setError] = useState(null);
-
-
-    async function playSound() {
-        const { sound } = await Audio.Sound.createAsync(require('../../assets/beauty-beast.mp3'));
-
-        setSound(sound);
-
-        await sound.playAsync();
-    }
+    // audio related state
+    const [sound, setSound] = useState(null);
+    const [status, setStatus] = useState({
+        isPlaying: false,
+        durationMillis: 0,
+        positionMillis: 0
+    });
 
     useEffect(() => {
-        return sound
-            ? () => {
-                sound.unloadAsync();
-            }
-            : undefined;
+        if (audioUri) {
+            loadAudio();
 
-    }, [sound]);
+        }
+        return () => {
+            unloadAudio();
+        };
+    }, [audioUri]);
 
+    // Firebase storage work
     useEffect(() => {
         const imgReference = ref(storage, imageUrl);
+        const audioReference = ref(storage, audioUrl);
 
+        // download image for player
         getDownloadURL(imgReference)
             .then((url) => {
-                setIsFetching(false);
                 setImgUri(url);
             })
             .catch((error) => {
-                setIsFetching(false);
                 setError(error);
             });
-    }, [imageUrl]);
 
-    const playBack = () => {};
+        // download audio for player
+        getDownloadURL(audioReference)
+            .then((url) => {
+                setAudioUri(url);
+            })
+            .catch((error) => {
+                setError(error);
+            });
+    }, [imageUrl, audioUrl]);
 
-    const playForward = () => {};
+    async function unloadAudio() {
+        if (sound) {
+            await sound.unloadAsync();
+        }
+    }
+
+    async function loadAudio() {
+        const { sound } = await Audio.Sound.createAsync(
+            { uri: audioUri },
+            { shouldPlay: true },
+            onPlaybackStatusUpdate
+
+        );
+        setSound(sound);
+    }
+
+    function onPlaybackStatusUpdate(playbackStatus) {
+        if (playbackStatus.isLoaded) {
+            setStatus({
+                isPlaying: playbackStatus.isPlaying,
+                durationMillis: playbackStatus.durationMillis,
+                positionMillis: playbackStatus.positionMillis
+            });
+        }
+    }
+
+    async function handlePlayPause() {
+        if (sound) {
+            if (status.isPlaying) {
+                await sound.pauseAsync();
+            } else {
+                await sound.playAsync();
+
+            }
+        }
+    };
+
+    const playBack = () => { };
+
+    const playForward = () => { };
 
     return (
         <View style={styles.container}>
@@ -60,14 +107,14 @@ function Player({ imageUrl, audioUrl }) {
                     isFetching && <Loading />
                 }
                 {
-                    imgUri && <Image source={{ uri: imgUri }} style={styles.image} />
+                    imgUri && !isFetching && <Image source={{ uri: imgUri }} style={styles.image} />
                 }
                 {
                     error && !isFetching && <Error message="Cannot upload player logo." />
                 }
                 <View style={styles.controlPanel}>
                     <IconButton onPress={playBack} size={75} color={GlobalStyles.colors.primary3} icon="play-back-circle" />
-                    <IconButton onPress={playSound} size={75} color={GlobalStyles.colors.primary3} icon="play-circle" />
+                    <IconButton onPress={handlePlayPause} size={75} color={GlobalStyles.colors.primary3} icon={status.isPlaying ? "pause-circle" : "play-circle"} />
                     <IconButton onPress={playForward} size={75} color={GlobalStyles.colors.primary3} icon="play-forward-circle" />
                 </View>
             </View>

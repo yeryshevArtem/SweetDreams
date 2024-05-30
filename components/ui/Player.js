@@ -22,7 +22,7 @@ function Player({ imageUrl, audioUrl }) {
     const [error, setError] = useState(null);
     // audio related state
     const soundRef = useRef(null);
-    const [sound, setSound] = useState(null);
+
     const [status, setStatus] = useState({
         isPlaying: false,
         durationMillis: 0,
@@ -56,13 +56,9 @@ function Player({ imageUrl, audioUrl }) {
 
     useEffect(() => {
         async function unloadAudio() {
-            if (sound) {
-                await sound.unloadAsync();
-            } else {
-                if (soundRef.current) {
-                    await soundRef.current.unloadAsync();
-                    soundRef.current = null;
-                }
+            if (soundRef.current) {
+                await soundRef.current.unloadAsync();
+                soundRef.current = null;
             }
         }
 
@@ -85,7 +81,6 @@ function Player({ imageUrl, audioUrl }) {
 
         );
         soundRef.current = sound;
-        setSound(sound);
 
     }
 
@@ -100,20 +95,20 @@ function Player({ imageUrl, audioUrl }) {
     }
 
     async function handlePlayPause() {
-        if (sound) {
+        if (soundRef.current) {
             if (status.isPlaying) {
-                await sound.pauseAsync();
+                await soundRef.current.pauseAsync();
             } else {
-                await sound.playAsync();
+                await soundRef.current.playAsync();
 
             }
         }
     };
 
     async function handleSliderChange(value) {
-        if (sound) {
+        if (soundRef.current) {
             try {
-                await sound.setPositionAsync(value);
+                await soundRef.current.setPositionAsync(value);
             } catch (err) {
                 // https://stackoverflow.com/questions/63490637/methods-being-called-on-audio-sound-after-ive-unload-it-and-moved-screen/69601460#69601460
                 console.log(err);
@@ -143,14 +138,14 @@ function Player({ imageUrl, audioUrl }) {
                     value={status.positionMillis}
                     maximumValue={status.durationMillis}
                     onValueChange={handleSliderChange}
-                    minimumTrackTintColor={GlobalStyles.colors.primary3}
+                    minimumTrackTintColor={GlobalStyles.colors.primary1}
                     maximumTrackTintColor={GlobalStyles.colors.primary2}
                 />
                 <Text style={styles.timeline}>{formatTime(status.positionMillis)} / {formatTime(status.durationMillis)}</Text>
                 <View style={styles.controlPanel}>
-                    <IconButton onPress={playBack} size={75} color={GlobalStyles.colors.primary3} icon="play-back-circle" />
-                    <IconButton onPress={handlePlayPause} size={75} color={GlobalStyles.colors.primary3} icon={status.isPlaying ? "pause-circle" : "play-circle"} />
-                    <IconButton onPress={playForward} size={75} color={GlobalStyles.colors.primary3} icon="play-forward-circle" />
+                    <IconButton onPress={playBack} size={75} color={GlobalStyles.colors.primary1} icon="play-back-circle" />
+                    <IconButton onPress={handlePlayPause} size={75} color={GlobalStyles.colors.primary1} icon={status.isPlaying ? "pause-circle" : "play-circle"} />
+                    <IconButton onPress={playForward} size={75} color={GlobalStyles.colors.primary1} icon="play-forward-circle" />
                 </View>
             </View>
 

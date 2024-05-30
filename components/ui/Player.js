@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { Audio } from "expo-av";
 import Slider from "@react-native-community/slider";
@@ -21,22 +21,13 @@ function Player({ imageUrl, audioUrl }) {
     const [isFetching, setIsFetching] = useState(false);
     const [error, setError] = useState(null);
     // audio related state
+    const soundRef = useRef(null);
     const [sound, setSound] = useState(null);
     const [status, setStatus] = useState({
         isPlaying: false,
         durationMillis: 0,
         positionMillis: 0
     });
-
-    useEffect(() => {
-        if (audioUri) {
-            loadAudio();
-
-        }
-        return () => {
-            unloadAudio();
-        };
-    }, [audioUri]);
 
     // Firebase storage work
     useEffect(() => {
@@ -60,24 +51,40 @@ function Player({ imageUrl, audioUrl }) {
             .catch((error) => {
                 setError(error);
             });
-    }, [imageUrl, audioUrl]);
+    }, []);
 
-    async function unloadAudio() {
-        if (sound) {
-            await sound.unloadAsync();
+
+    useEffect(() => {
+        async function unloadAudio() {
+            if (sound) {
+                await sound.unloadAsync();
+            } else {
+                if (soundRef.current) {
+                    await soundRef.current.unloadAsync();
+                    soundRef.current = null;
+                }
+            }
         }
-    }
 
-    async function loadAudio() {
-        if (sound) {
+        if (audioUri) {
+            loadAudio();
+
+        }
+        return () => {
             unloadAudio();
         }
+    }, [audioUri]);
+
+
+
+    async function loadAudio() {
         const { sound } = await Audio.Sound.createAsync(
             { uri: audioUri },
             { shouldPlay: true },
             onPlaybackStatusUpdate
 
         );
+        soundRef.current = sound;
         setSound(sound);
 
     }
@@ -105,7 +112,13 @@ function Player({ imageUrl, audioUrl }) {
 
     async function handleSliderChange(value) {
         if (sound) {
-            await sound.setPositionAsync(value);
+            try {
+                await sound.setPositionAsync(value);
+            } catch (err) {
+                // https://stackoverflow.com/questions/63490637/methods-being-called-on-audio-sound-after-ive-unload-it-and-moved-screen/69601460#69601460
+                console.log(err);
+            }
+
         }
     }
 

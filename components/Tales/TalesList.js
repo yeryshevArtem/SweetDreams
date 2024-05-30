@@ -22,7 +22,6 @@ export default AllTalesList;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 'auto',
-        marginVertical: 50
+        flex: 1
     }
 });

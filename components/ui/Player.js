@@ -122,26 +122,36 @@ function Player({ imageUrl, audioUrl }) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.imagePanel}>
+            <View style={styles.coverBox}>
                 {
                     isFetching && <Loading />
                 }
                 {
-                    imgUri && !isFetching && <Image source={{ uri: imgUri }} style={styles.image} />
+                    imgUri && (
+                        <Image
+                            source={{ uri: imgUri }}
+                            style={styles.image}
+                            onLoadStart={() => setIsFetching(true)}
+                            onLoadEnd={() => setIsFetching(false)}
+                        />
+                    )
                 }
                 {
-                    error && !isFetching && <Error message="Cannot upload player logo." />
+                    error && !isFetching && <Error message="Cannot upload the cover." />
                 }
-                <SeekBar 
-                    maxVal={status.durationMillis}
-                    val={status.positionMillis}
-                    onChange={handleSliderChange}
-                />
-                <View style={styles.controlPanel}>
+                <View style={styles.seekBarBox}>
+                    <SeekBar
+                        maxVal={status.durationMillis}
+                        val={status.positionMillis}
+                        onChange={handleSliderChange}
+                    />
+                </View>
+                <View style={styles.buttonsBox}>
                     <IconButton onPress={playBack} size={75} color={GlobalStyles.colors.primary1} icon="play-back-circle" />
                     <IconButton onPress={handlePlayPause} size={75} color={GlobalStyles.colors.primary1} icon={status.isPlaying ? "pause-circle" : "play-circle"} />
                     <IconButton onPress={playForward} size={75} color={GlobalStyles.colors.primary1} icon="play-forward-circle" />
                 </View>
+
             </View>
 
         </View>
@@ -153,17 +163,25 @@ export default Player;
 const styles = StyleSheet.create({
     container: {
         marginVertical: 25,
-        alignItems: 'center'
-    },
-    imagePanel: {
         alignItems: 'center',
+        flex: 1
+    },
+    coverBox: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1
     },
     image: {
         width: 250,
         height: 250,
-        borderRadius: 5
+        borderRadius: 5,
+        resizeMode: 'contain'
     },
-    controlPanel: {
-        flexDirection: 'row'
+    seekBarBox: {
+        flex: 2
+    },
+    buttonsBox: {
+        flexDirection: 'row',
+        flex: 6
     }
 })

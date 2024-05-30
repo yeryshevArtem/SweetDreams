@@ -22,9 +22,11 @@ function TaleDetail({ route, navigation }) {
     }, [selectedTale]);
 
     return (
-        <Background>
-            <View style={styles.container}>
+        <Background style={styles.container}>
+            <View style={styles.titleBox}>
                 <Text style={styles.title}>{selectedTale.title}</Text>
+            </View>
+            <View style={styles.playerBox}>
                 <Player imageUrl={selectedTale.imageUrl} audioUrl={selectedTale.audioUrl} />
             </View>
         </Background>
@@ -36,10 +38,18 @@ export default TaleDetail;
 const styles = StyleSheet.create({
     container: {
         marginVertical: 20,
+        flex: 1
     },
     title: {
         color: GlobalStyles.colors.primary1,
         textAlign: 'center',
         fontSize: 20
+    },
+    titleBox: {
+        marginTop: 20,
+        flex: 1
+    },
+    playerBox: {
+        flex: 20
     }
 });

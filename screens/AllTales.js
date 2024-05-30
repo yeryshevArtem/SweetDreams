@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+// util
 import { fetchAllTales } from '../util/http';
-import Loading from '../components/ui/Loading';
+// components
 import Error from '../components/ui/Error';
 import TalesList from '../components/Tales/TalesList';
 // store
 import { TalesContext } from '../store/tales-context';
 // UI 
 import Background from '../components/ui/Background';
+import Loading from '../components/ui/Loading';
 
 function AllTales() {
     const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +22,7 @@ function AllTales() {
                 setIsLoading(true);
                 const allTalesTemp = await fetchAllTales();
                 talesCtx.setTales(allTalesTemp);
-            } catch(err) {
+            } catch (err) {
                 setError(err);
             }
             setIsLoading(false);
@@ -32,17 +35,30 @@ function AllTales() {
     };
 
     return (
-        <Background>
+        <Background style={styles.container}>
             {
                 error && !isLoading && <Error message="Cannot fetch all tales, try to reload the page." onConfirm={closeError} />
             }
             {
                 isLoading && <Loading />
             }
-            <TalesList allTales={talesCtx.tales}/>
+            <View style={styles.listBox}>
+                <TalesList allTales={talesCtx.tales} />
+            </View>
         </Background>
 
     );
 }
 
 export default AllTales;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
+    listBox: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        marginTop: 25
+    }
+});

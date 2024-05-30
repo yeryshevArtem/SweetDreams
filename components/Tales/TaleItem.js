@@ -19,11 +19,9 @@ function TaleItem({ title, imageUrl, id }) {
 
     useEffect(() => {
         const imgReference = ref(storage, imageUrl);
-        setIsFetching(true);
 
         getDownloadURL(imgReference)
             .then((url) => {
-                setIsFetching(false);
                 setImgUri(url);
             })
             .catch((error) => {
@@ -38,19 +36,26 @@ function TaleItem({ title, imageUrl, id }) {
     };
 
     return (
-        <Pressable style={({ pressed }) => pressed && styles.pressed} onPress={talePressHandler}>
-            <View style={styles.container}>
+        <Pressable style={({ pressed }) => [styles.container, pressed && styles.pressed]} onPress={talePressHandler}>
+            <View style={styles.coverBox}>
                 {
                     isFetching && <Loading />
                 }
                 {
-                    imgUri && <Image source={{ uri: imgUri }} style={styles.image} />
+                    imgUri && (
+                        <Image 
+                            source={{ uri: imgUri }} 
+                            style={styles.image} 
+                            onLoadStart={() => setIsFetching(true)}
+                            onLoadEnd={() => setIsFetching(false)}
+                        />
+                    )
                 }
                 {
                     error && !isFetching && <Error message="Cannot upload tale image." />
                 }
                 <View style={styles.titleBox}>
-                    <Text style={styles.titleText}>{title}</Text>
+                    <Text style={styles.title}>{title}</Text>
                 </View>
             </View>
         </Pressable>
@@ -64,16 +69,18 @@ const styles = StyleSheet.create({
         opacity: 0.75
     },
     container: {
-        width: 150,
-        height: 200,
-        marginHorizontal: 10,
-        marginVertical: 10,
+        flex: 1,
+        marginHorizontal: 10
+    },
+    coverBox: {
+        flex: 1
     },
     titleBox: {
+        flex: 1,
         marginVertical: 10,
-
+        width: 150
     },
-    titleText: {
+    title: {
         color: GlobalStyles.colors.primary1
     },
     image: {

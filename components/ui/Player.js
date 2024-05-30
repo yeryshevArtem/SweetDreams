@@ -9,10 +9,9 @@ import { storage } from '../../firebase/storage';
 import Error from "./Error";
 import Loading from "./Loading";
 import IconButton from "./IconButton";
+import SeekBar from "./SeekBar";
 // constants 
 import { GlobalStyles } from "../../constants/styles";
-// utils
-import { formatTime } from '../../util/time';
 
 function Player({ imageUrl, audioUrl }) {
     // uri related state
@@ -133,15 +132,11 @@ function Player({ imageUrl, audioUrl }) {
                 {
                     error && !isFetching && <Error message="Cannot upload player logo." />
                 }
-                <Slider
-                    style={styles.slider}
-                    value={status.positionMillis}
-                    maximumValue={status.durationMillis}
-                    onValueChange={handleSliderChange}
-                    minimumTrackTintColor={GlobalStyles.colors.primary1}
-                    maximumTrackTintColor={GlobalStyles.colors.primary2}
+                <SeekBar 
+                    maxVal={status.durationMillis}
+                    val={status.positionMillis}
+                    onChange={handleSliderChange}
                 />
-                <Text style={styles.timeline}>{formatTime(status.positionMillis)} / {formatTime(status.durationMillis)}</Text>
                 <View style={styles.controlPanel}>
                     <IconButton onPress={playBack} size={75} color={GlobalStyles.colors.primary1} icon="play-back-circle" />
                     <IconButton onPress={handlePlayPause} size={75} color={GlobalStyles.colors.primary1} icon={status.isPlaying ? "pause-circle" : "play-circle"} />
@@ -168,16 +163,7 @@ const styles = StyleSheet.create({
         height: 250,
         borderRadius: 5
     },
-    slider: {
-        marginTop: 50,
-        width: 250,
-        height: 40,
-    },
     controlPanel: {
-        flexDirection: 'row',
-        marginVertical: 30
-    },
-    timeline: {
-        color: GlobalStyles.colors.primary1
+        flexDirection: 'row'
     }
 })

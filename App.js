@@ -60,7 +60,7 @@ export default function App() {
               name="Home"
               component={TalesOverview}
               options={{
-                title: "All Tales",
+                title: "10 Most Popular Fairy Tale Stories of All Time",
                 tabBarLabel: "Home Page",
                 tabBarIcon: ({ color, size }) => <Ionicons color={color} size={size} name="home" />,
                 headerStyle: {

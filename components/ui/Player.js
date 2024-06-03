@@ -13,7 +13,7 @@ import SeekBar from "./SeekBar";
 // constants 
 import { GlobalStyles } from "../../constants/styles";
 
-function Player({ imageUrl, audioUrl }) {
+function Player({ imageUrl, audioUrl, onPlayForward = () => {}, onPlayBack = () => {} }) {
     // uri related state
     const [imgUri, setImgUri] = useState('');
     const [audioUri, setAudioUri] = useState('');
@@ -50,7 +50,7 @@ function Player({ imageUrl, audioUrl }) {
             .catch((error) => {
                 setError(error);
             });
-    }, []);
+    }, [imageUrl, audioUrl]);
 
 
     useEffect(() => {
@@ -116,9 +116,13 @@ function Player({ imageUrl, audioUrl }) {
         }
     }
 
-    const playBack = () => { };
+    const playBack = () => {
+        onPlayBack();
+    };
 
-    const playForward = () => { };
+    const playForward = () => {
+        onPlayForward();
+    };
 
     return (
         <View style={styles.container}>

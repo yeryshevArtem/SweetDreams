@@ -13,6 +13,9 @@ function TaleDetail({ route, navigation }) {
     const talesCtx = useContext(TalesContext);
 
     const selectedTale = talesCtx.tales.filter((tale) => tale.id === params.taleId)[0];
+    const currIndex = talesCtx.tales.findIndex((tale) => tale.id === params.taleId);
+    const prevIndex = currIndex - 1;
+    const nextIndex = currIndex + 1;
 
     useEffect(() => {
         navigation.setOptions({
@@ -21,13 +24,41 @@ function TaleDetail({ route, navigation }) {
         })
     }, [selectedTale]);
 
+    const playNext = () => {
+        let nextTaleId;
+
+        if (talesCtx.tales[nextIndex]) {
+            nextTaleId = talesCtx.tales[nextIndex].id;
+        } else {
+            nextTaleId = talesCtx.tales[0].id;
+        }
+        navigation.navigate('TaleDetail', { taleId: nextTaleId });
+    };
+
+    const playBlack = () => {
+        let prevTaleId;
+
+        if (prevIndex === -1) {
+            prevTaleId = talesCtx.tales[talesCtx.tales.length - 1].id;
+        } else {
+            prevTaleId = talesCtx.tales[prevIndex].id;
+        }
+
+        navigation.navigate('TaleDetail', { taleId: prevTaleId });
+    };
+
     return (
         <Background style={styles.container}>
             <View style={styles.titleBox}>
                 <Text style={styles.title}>{selectedTale.title}</Text>
             </View>
             <View style={styles.playerBox}>
-                <Player imageUrl={selectedTale.imageUrl} audioUrl={selectedTale.audioUrl} />
+                <Player 
+                    imageUrl={selectedTale.imageUrl} 
+                    audioUrl={selectedTale.audioUrl}
+                    onPlayBack={playBlack}
+                    onPlayForward={playNext}
+                />
             </View>
         </Background>
     );

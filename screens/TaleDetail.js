@@ -55,7 +55,7 @@ function TaleDetail({ route, navigation }) {
                     <Text style={styles.title}>{selectedTale.title}</Text>
                 </View>
                 <View style={styles.likeBox}>
-                    <LikePanel />
+                    <LikePanel switched={selectedTale.liked} id={selectedTale.id} />
                 </View>
             </View>
             <View style={styles.playerRow}>

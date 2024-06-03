@@ -7,6 +7,7 @@ import Background from '../components/ui/Background';
 import Player from '../components/ui/Player';
 // constants
 import { GlobalStyles } from '../constants/styles';
+import LikePanel from '../components/Tales/LikePanel';
 
 function TaleDetail({ route, navigation }) {
     const params = route.params;
@@ -49,16 +50,23 @@ function TaleDetail({ route, navigation }) {
 
     return (
         <Background style={styles.container}>
-            <View style={styles.titleBox}>
-                <Text style={styles.title}>{selectedTale.title}</Text>
+            <View style={styles.headlineRow}>
+                <View style={styles.titleBox}>
+                    <Text style={styles.title}>{selectedTale.title}</Text>
+                </View>
+                <View style={styles.likeBox}>
+                    <LikePanel />
+                </View>
             </View>
-            <View style={styles.playerBox}>
-                <Player 
-                    imageUrl={selectedTale.imageUrl} 
-                    audioUrl={selectedTale.audioUrl}
-                    onPlayBack={playBlack}
-                    onPlayForward={playNext}
-                />
+            <View style={styles.playerRow}>
+                <View style={styles.playerBox}>
+                    <Player
+                        imageUrl={selectedTale.imageUrl}
+                        audioUrl={selectedTale.audioUrl}
+                        onPlayBack={playBlack}
+                        onPlayForward={playNext}
+                    />
+                </View>
             </View>
         </Background>
     );
@@ -76,11 +84,24 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20
     },
-    titleBox: {
-        marginTop: 20,
+    playerBox: {
         flex: 1
     },
-    playerBox: {
-        flex: 20
+    likeBox: {
+        position: 'absolute',
+        right: 0,
+        top: 8
+    },
+    titleBox: {
+        marginTop: 20,
+        flex: 1,
+        alignItems: 'center'
+    },
+    headlineRow: {
+        flex: 0.5,
+        flexDirection: 'row'
+    },
+    playerRow: {
+        flex: 5
     }
 });

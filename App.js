@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import AllTales from './screens/AllTales';
 import TaleDetail from './screens/TaleDetail';
-import Favourites from './screens/Favourites';
+import FavouriteTales from './screens/FavouriteTales';
 import Profile from './screens/Profile';
 import { GlobalStyles } from './constants/styles';
 // store
@@ -72,11 +72,15 @@ export default function App() {
             />
             <BottomTab.Screen
               name="Favourites"
-              component={Favourites}
+              component={FavouriteTales}
               options={{
-                title: "Favourites",
+                title: "My Top Tales",
                 tabBarLabel: "Favourites",
-                tabBarIcon: ({ color, size }) => <Ionicons size={size} color={color} name="heart" />
+                tabBarIcon: ({ color, size }) => <Ionicons size={size} color={color} name="heart" />,
+                headerStyle: {
+                  backgroundColor: GlobalStyles.colors.primary2
+                },
+                headerTintColor: GlobalStyles.colors.primary1
               }}
             />
             <BottomTab.Screen

@@ -41,7 +41,7 @@ function AllTales() {
                 isLoading && <Loading />
             }
             <View style={styles.listBox}>
-                <TalesList allTales={data} />
+                <TalesList allTales={data} horizontal={true} />
             </View>
         </Background>
 

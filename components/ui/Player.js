@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { View, StyleSheet, Image, Text } from 'react-native';
 import { Audio } from "expo-av";
-import Slider from "@react-native-community/slider";
 // firebase
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/storage';

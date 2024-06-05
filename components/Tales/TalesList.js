@@ -5,20 +5,20 @@ function renderAllTalesItem({ item }) {
     return <TaleItem title={item.title} imageUrl={item.imageUrl} id={item.id} audioUrl={item.audioUrl} />;
 }
 
-function AllTalesList({ allTales }) {
+function TalesList({ allTales, horizontal = false }) {
     return (
         <View style={styles.container}>
             <FlatList
                 data={allTales}
                 renderItem={renderAllTalesItem}
                 keyExtractor={(item) => item.id}
-                horizontal={true}
+                horizontal={horizontal}
             />
         </View>
     );
 };
 
-export default AllTalesList;
+export default TalesList;
 
 const styles = StyleSheet.create({
     container: {

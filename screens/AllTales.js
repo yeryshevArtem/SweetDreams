@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 // util
 import { fetchAllTales } from '../util/http';
@@ -12,26 +12,24 @@ import Background from '../components/ui/Background';
 import Loading from '../components/ui/Loading';
 
 function AllTales() {
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
     const talesCtx = useContext(TalesContext);
+    const { data, error, isLoading } = talesCtx.talesState;
 
     useEffect(() => {
         async function getAllTales() {
             try {
-                setIsLoading(true);
+                talesCtx.setLoading();
                 const allTalesTemp = await fetchAllTales();
                 talesCtx.setTales(allTalesTemp);
             } catch (err) {
-                setError(err);
+                talesCtx.setError(err);
             }
-            setIsLoading(false);
         }
         getAllTales();
     }, []);
 
     const closeError = () => {
-        setError(null);
+        talesCtx.setError(null);
     };
 
     return (
@@ -43,7 +41,7 @@ function AllTales() {
                 isLoading && <Loading />
             }
             <View style={styles.listBox}>
-                <TalesList allTales={talesCtx.tales} />
+                <TalesList allTales={data} />
             </View>
         </Background>
 

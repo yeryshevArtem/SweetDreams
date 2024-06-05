@@ -12,9 +12,10 @@ import LikePanel from '../components/Tales/LikePanel';
 function TaleDetail({ route, navigation }) {
     const params = route.params;
     const talesCtx = useContext(TalesContext);
+    const { data: talesData, error, isLoading } = talesCtx.talesState;
 
-    const selectedTale = talesCtx.tales.filter((tale) => tale.id === params.taleId)[0];
-    const currIndex = talesCtx.tales.findIndex((tale) => tale.id === params.taleId);
+    const selectedTale = talesData.filter((tale) => tale.id === params.taleId)[0];
+    const currIndex = talesData.findIndex((tale) => tale.id === params.taleId);
     const prevIndex = currIndex - 1;
     const nextIndex = currIndex + 1;
 
@@ -28,10 +29,10 @@ function TaleDetail({ route, navigation }) {
     const playNext = () => {
         let nextTaleId;
 
-        if (talesCtx.tales[nextIndex]) {
-            nextTaleId = talesCtx.tales[nextIndex].id;
+        if (talesData[nextIndex]) {
+            nextTaleId = talesData[nextIndex].id;
         } else {
-            nextTaleId = talesCtx.tales[0].id;
+            nextTaleId =talesData[0].id;
         }
         navigation.navigate('TaleDetail', { taleId: nextTaleId });
     };
@@ -40,9 +41,9 @@ function TaleDetail({ route, navigation }) {
         let prevTaleId;
 
         if (prevIndex === -1) {
-            prevTaleId = talesCtx.tales[talesCtx.tales.length - 1].id;
+            prevTaleId = talesData[talesData.length - 1].id;
         } else {
-            prevTaleId = talesCtx.tales[prevIndex].id;
+            prevTaleId = talesData[prevIndex].id;
         }
 
         navigation.navigate('TaleDetail', { taleId: prevTaleId });

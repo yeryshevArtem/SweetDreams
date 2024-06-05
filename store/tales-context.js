@@ -1,27 +1,52 @@
 import { useReducer, createContext } from 'react';
 
-export const TalesContext = createContext({
-    tales: [],
-    setTales: (tales) => { },
-    updateTale: (tale) => { }
-});
+const initialState = {
+    data: [],
+    isLoading: false,
+    error: null
+};
 
-function talesReducer(state, action) {
+export const TalesContext = createContext();
+
+function talesReducer(state = initialState, action) {
     switch (action.type) {
-        case 'SET': {
-            return action.payload;
+        case 'SET_LOADING': {
+            return {
+                ...state,
+                isLoading: true,
+                error: null
+            };
+        }
+        case 'SET_SUCCESS': {
+            return {
+                ...state,
+                isLoading: false,
+                data: action.payload
+            };
+        }
+        case 'SET_ERROR': {
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            };
         }
         case 'UPDATE': {
             const id = action.payload.id;
             const isLiked = action.payload.liked;
-            const tempTales = [...state];
+
+            const tempTales = [...state.data];
+
             const taleIdx = tempTales.findIndex(tale => tale.id === id);
             const updatedTale = {
                 ...tempTales[taleIdx],
                 liked: isLiked
             };
             tempTales.splice(taleIdx, 1, updatedTale);
-            return tempTales;
+            return {
+                ...state,
+                data: tempTales
+            };
         }
         default: {
             return state;
@@ -30,12 +55,25 @@ function talesReducer(state, action) {
 }
 
 function TalesContextProvider({ children }) {
-    const [talesState, dispatch] = useReducer(talesReducer, []);
+    const [talesState, dispatch] = useReducer(talesReducer, initialState);
 
     function setTales(tales) {
         dispatch({
-            type: 'SET',
+            type: 'SET_SUCCESS',
             payload: tales
+        });
+    }
+
+    function setLoading() {
+        dispatch({
+            type: 'SET_LOADING'
+        });
+    }
+
+    function setError(err) {
+        dispatch({
+            type: 'SET_ERROR',
+            payload: err
         });
     }
 
@@ -47,9 +85,11 @@ function TalesContextProvider({ children }) {
     }
 
     const value = {
-        tales: talesState,
+        talesState,
         setTales,
-        updateTale
+        updateTale,
+        setLoading,
+        setError
     };
 
     return (

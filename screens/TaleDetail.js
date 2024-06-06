@@ -7,6 +7,8 @@ import Background from '../components/ui/Background';
 import Player from '../components/ui/Player';
 // constants
 import { GlobalStyles } from '../constants/styles';
+
+// components
 import LikePanel from '../components/Tales/LikePanel';
 
 function TaleDetail({ route, navigation }) {

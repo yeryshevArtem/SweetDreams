@@ -34,7 +34,7 @@ function TaleDetail({ route, navigation }) {
         if (talesData[nextIndex]) {
             nextTaleId = talesData[nextIndex].id;
         } else {
-            nextTaleId =talesData[0].id;
+            nextTaleId = talesData[0].id;
         }
         navigation.navigate('TaleDetail', { taleId: nextTaleId });
     };

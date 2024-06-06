@@ -18,18 +18,18 @@ function AllTales() {
     useEffect(() => {
         async function getAllTales() {
             try {
-                talesCtx.setLoading();
+                talesCtx.fetchTalesRequest();
                 const allTalesTemp = await fetchAllTales();
-                talesCtx.setTales(allTalesTemp);
+                talesCtx.fetchTalesSuccess(allTalesTemp);
             } catch (err) {
-                talesCtx.setError(err);
+                talesCtx.fetchTalesError(err);
             }
         }
         getAllTales();
     }, []);
 
     const closeError = () => {
-        talesCtx.setError(null);
+        talesCtx.fetchTalesError(null);
     };
 
     return (

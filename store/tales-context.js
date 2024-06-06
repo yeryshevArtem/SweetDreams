@@ -10,28 +10,35 @@ export const TalesContext = createContext();
 
 function talesReducer(state = initialState, action) {
     switch (action.type) {
-        case 'SET_LOADING': {
+        case 'FETCH_TALES_LOADING': {
             return {
                 ...state,
                 isLoading: true,
                 error: null
             };
         }
-        case 'SET_SUCCESS': {
+        case 'FETCH_TALES_SUCCESS': {
             return {
                 ...state,
                 isLoading: false,
                 data: action.payload
             };
         }
-        case 'SET_ERROR': {
+        case 'FETCH_TALES_ERROR': {
             return {
                 ...state,
                 isLoading: false,
                 error: action.payload
             };
         }
-        case 'UPDATE': {
+        case 'UPDATE_TALE_LOADING': {
+            return {
+                ...state,
+                isLoading: true,
+                error: null
+            };
+        }
+        case 'UPDATE_TALE_SUCCESS': {
             const id = action.payload.id;
             const isLiked = action.payload.liked;
 
@@ -45,7 +52,15 @@ function talesReducer(state = initialState, action) {
             tempTales.splice(taleIdx, 1, updatedTale);
             return {
                 ...state,
+                isLoading: false,
                 data: tempTales
+            };
+        }
+        case 'UPDATE_TALE_ERROR': {
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
             };
         }
         default: {
@@ -57,39 +72,54 @@ function talesReducer(state = initialState, action) {
 function TalesContextProvider({ children }) {
     const [talesState, dispatch] = useReducer(talesReducer, initialState);
 
-    function setTales(tales) {
+    function fetchTalesSuccess(tales) {
         dispatch({
-            type: 'SET_SUCCESS',
+            type: 'FETCH_TALES_SUCCESS',
             payload: tales
         });
     }
 
-    function setLoading() {
+    function fetchTalesRequest() {
         dispatch({
-            type: 'SET_LOADING'
+            type: 'FETCH_TALES_LOADING'
         });
     }
 
-    function setError(err) {
+    function fetchTalesError(err) {
         dispatch({
-            type: 'SET_ERROR',
+            type: 'FETCH_TALES_ERROR',
             payload: err
         });
     }
 
-    function updateTale(updated) {
+    function updateTaleRequest() {
         dispatch({
-            type: 'UPDATE',
+            type: 'UPDATE_TALE_LOADING'
+        });
+    }
+
+    function updateTaleSuccess(updated) {
+        dispatch({
+            type: 'UPDATE_TALE_SUCCESS',
             payload: updated
+        });
+    }
+
+    function updateTaleError(err) {
+        dispatch({
+            type: 'UPDATE_TALE_ERROR',
+            payload: err
         });
     }
 
     const value = {
         talesState,
-        setTales,
-        updateTale,
-        setLoading,
-        setError
+        fetchTalesSuccess,
+        fetchTalesRequest,
+        fetchTalesError,
+        updateTaleError,
+        updateTaleSuccess,
+        updateTaleRequest
     };
 
     return (

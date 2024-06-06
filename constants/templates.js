@@ -5,5 +5,7 @@ export const templates = {
     supportErrorTitle: 'Error Occured', 
     supportErrorBody: 'Unable to open email client',
     playerCoverError: 'Cannot upload the cover.',
-    taleImageError: 'Cannot upload tale image.'
+    taleImageError: 'Cannot upload tale image.',
+    likePanelErrorTitle: 'An error occured',
+    likePanelErrorBody: 'When you try to like this tale, something went wrong. Please try again later.'
 };

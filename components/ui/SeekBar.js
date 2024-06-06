@@ -12,7 +12,7 @@ function SeekBar({ maxVal, val, onChange}) {
                 maximumValue={maxVal}
                 onValueChange={onChange}
                 minimumTrackTintColor={GlobalStyles.colors.primary1}
-                maximumTrackTintColor={GlobalStyles.colors.primary2}
+                maximumTrackTintColor={GlobalStyles.colors.primary4}
             />
             <Text style={styles.timeline}>{formatTime(val)} / {formatTime(maxVal)}</Text>
         </View>

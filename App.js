@@ -89,7 +89,11 @@ export default function App() {
               options={{
                 title: "Profile",
                 tabBarLabel: "Profile",
-                tabBarIcon: ({ color, size }) => <Ionicons size={size} color={color} name="settings" />
+                tabBarIcon: ({ color, size }) => <Ionicons size={size} color={color} name="settings" />,
+                headerStyle: {
+                  backgroundColor: GlobalStyles.colors.primary2
+                },
+                headerTintColor: GlobalStyles.colors.primary1
               }}
             />
           </BottomTab.Navigator>

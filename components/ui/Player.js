@@ -11,6 +11,7 @@ import IconButton from "./IconButton";
 import SeekBar from "./SeekBar";
 // constants 
 import { GlobalStyles } from "../../constants/styles";
+import { templates } from "../../constants/templates";
 
 function Player({ imageUrl, audioUrl, onPlayForward = () => {}, onPlayBack = () => {} }) {
     // uri related state
@@ -140,7 +141,7 @@ function Player({ imageUrl, audioUrl, onPlayForward = () => {}, onPlayBack = () 
                     )
                 }
                 {
-                    error && !isFetching && <Error message="Cannot upload the cover." />
+                    error && !isFetching && <Error message={templates.playerCoverError} />
                 }
                 <View style={styles.seekBarBox}>
                     <SeekBar

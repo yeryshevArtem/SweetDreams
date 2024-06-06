@@ -9,6 +9,7 @@ import Loading from '../ui/Loading';
 import Error from '../ui/Error';
 // constants
 import { GlobalStyles } from '../../constants/styles';
+import { templates } from '../../constants/templates';
 
 function TaleItem({ title, imageUrl, id }) {
     const [imgUri, setImgUri] = useState('');
@@ -52,7 +53,7 @@ function TaleItem({ title, imageUrl, id }) {
                     )
                 }
                 {
-                    error && !isFetching && <Error message="Cannot upload tale image." />
+                    error && !isFetching && <Error message={templates.taleImageError} />
                 }
                 <View style={styles.titleBox}>
                     <Text style={styles.title}>{title}</Text>

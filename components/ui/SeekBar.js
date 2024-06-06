@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet } from 'react-native';
 import Slider from '@react-native-community/slider';
+// utils
 import { formatTime } from '../../util/time';
+// constants
 import { GlobalStyles } from '../../constants/styles';
 
 function SeekBar({ maxVal, val, onChange}) {

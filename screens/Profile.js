@@ -1,15 +1,17 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Linking, Alert } from 'react-native';
 // ui
 import Background from '../components/ui/Background';
 // components
 import SettingsList from '../components/Account/SettingsList';
+// constants
+import { templates } from '../constants/templates';
 
 const settingsOptions = [
     {
         id: 'accountDetails',
         title: 'Account Details',
         callbackFn: () => {
-            console.log('Naviate to account details')
+            console.log('Naviate to account details');
         },
         icon: "person"
     },
@@ -17,7 +19,13 @@ const settingsOptions = [
         id: 'support',
         title: 'Our customer care',
         callbackFn: () => {
-            console.log('Write us')
+            const email = templates.supportEmail;
+            const subject = templates.supportSubject;
+            const body = templates.supportBody;
+        
+            const url = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+            Linking.openURL(url).catch((err) => Alert.alert(templates.supportErrorTitle, templates.supportErrorBody));
         },
         icon: "chatbox"
     }

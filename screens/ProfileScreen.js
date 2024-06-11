@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
         flex: 1
     },
     settingsListBox: {
-        marginTop:20
+        marginTop: 20
     }
 });

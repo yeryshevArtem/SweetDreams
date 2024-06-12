@@ -9,15 +9,17 @@ import { templates } from '../../constants/templates';
 function AuthContent({ onSubmit, isLogin }) {
     const navigation = useNavigation();
 
-    function goToLoginScreen() {
-        navigation.navigate("Login");
+    function switchToAuthPage() {
+        const authScreen = isLogin ? 'Signup' : 'Login';
+        navigation.navigate(authScreen);
     }
+
     return (
         <View style={styles.container}>
-            <AuthForm onSubmit={onSubmit} />
+            <AuthForm onSubmit={onSubmit} isLogin={isLogin} />
             <View>
-                <LinkButton onPress={goToLoginScreen}>
-                    {isLogin ? templates.createNewUser : templates.login}
+                <LinkButton onPress={switchToAuthPage}>
+                    {isLogin ? templates.createNewUserNavigationLink : templates.loginNavigationLink}
                 </LinkButton>
             </View>
         </View>

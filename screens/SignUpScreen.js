@@ -1,12 +1,39 @@
-import { StyleSheet, View } from 'react-native';
+import { useContext } from 'react';
+import { StyleSheet, View, Alert } from 'react-native';
 import AuthContent from '../components/Auth/AuthContent';
 // ui
 import Background from '../components/ui/Background';
+import Loading from '../components/ui/Loading';
+// utils
+import { authorize } from '../util/http';
+// constants 
+import { templates } from '../constants/templates';
+// store
+import { AuthContext } from '../store/auth-context';
 
-function SignUp() {
+function SignUpScreen() {
+    const authCtx = useContext(AuthContext);
+    const { isLoading, error } = authCtx.authState;
 
-    function handleSignUp() {
-        console.log('clicked on register')
+    async function handleSignUp({ email, password }) {
+        try {
+            authCtx.authenticateLoading();
+            const jwt = await authorize({
+                email, 
+                password,
+                mode: 'signUp'
+            });
+            console.log(jwt)
+            authCtx.authenticateSuccess(jwt);
+
+        } catch (err) {
+            authCtx.authenticateError(err);
+            Alert.alert(templates.supportErrorTitle, templates.signUpErrorBody);
+        }
+    }
+
+    if (isLoading) {
+        return <Loading />
     }
 
     return (
@@ -18,7 +45,7 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
     container: {

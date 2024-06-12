@@ -11,7 +11,7 @@ import { TalesContext } from '../store/tales-context';
 import Background from '../components/ui/Background';
 import Loading from '../components/ui/Loading';
 
-function AllTales() {
+function AllTalesScreen() {
     const talesCtx = useContext(TalesContext);
     const { data, error, isLoading } = talesCtx.talesState;
 
@@ -48,7 +48,7 @@ function AllTales() {
     );
 }
 
-export default AllTales;
+export default AllTalesScreen;
 
 const styles = StyleSheet.create({
     container: {

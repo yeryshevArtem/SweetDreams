@@ -1,11 +1,10 @@
 import axios from 'axios';
-
-const BACKEND_URL = 'https://sweet-dreams-bc3b1-default-rtdb.firebaseio.com';
+import { API_DOMAIN, AUTH_DOMAIN, WEB_API_KEY } from '../firebase/config';
 
 export async function fetchAllTales() {
     const tales = [];
     try {
-        const response = await axios.get(`${BACKEND_URL}/tales.json`);
+        const response = await axios.get(`${API_DOMAIN}/tales.json`);
         for (let key of Object.keys(response.data)) {
             const tale = {
                 id: key,
@@ -25,11 +24,27 @@ export async function fetchAllTales() {
 
 export async function updateTale({ id, data }) {
     try {
-        const response = await axios.patch(`${BACKEND_URL}/tales/${id}.json`, data);
+        const response = await axios.patch(`${API_DOMAIN}/tales/${id}.json`, data);
         return {
             id,
             ...response.data
         };
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
+export async function authorize({ email, password, mode }) {
+    // method - signUp
+    try {
+        const response = await axios.post(`${AUTH_DOMAIN}/v1/accounts:${mode}?key=${WEB_API_KEY}`, {
+            email, 
+            password,
+            returnSecureToken: true
+        });
+        const token = response.data.idToken;
+
+        return token;
     } catch (err) {
         throw new Error(err);
     }

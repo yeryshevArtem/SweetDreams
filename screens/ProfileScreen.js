@@ -31,7 +31,7 @@ const settingsOptions = [
     }
 ];
 
-function Profile() {
+function ProfileScreen() {
     return (
         <Background style={styles.container}>
             <View style={styles.settingsListBox}>
@@ -42,7 +42,7 @@ function Profile() {
     );
 }
 
-export default Profile;
+export default ProfileScreen;
 
 const styles = StyleSheet.create({
     container: {

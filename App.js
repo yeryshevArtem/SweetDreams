@@ -1,8 +1,11 @@
+import { useContext, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+// screens
 import AllTalesScreen from './screens/AllTalesScreen';
 import TaleDetailScreen from './screens/TaleDetailScreen';
 import FavouriteTalesScreen from './screens/FavouriteTalesScreen';
@@ -13,6 +16,10 @@ import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
 // store
 import TalesContextProvider from './store/tales-context';
+import AuthContextProvider from './store/auth-context';
+import { AuthContext } from './store/auth-context';
+// ui
+import Loading from './components/ui/Loading';
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -131,17 +138,40 @@ function AuthenticatedStack() {
 }
 
 function Navigation() {
-  // get token from context 
+  const authCtx = useContext(AuthContext);
+  const { isAuthenticated } = authCtx.authState;
+
   return (
     <NavigationContainer>
-      {true && <AuthStack />}
-      {false && <AuthenticatedStack />}
+      {!isAuthenticated && <AuthStack />}
+      {isAuthenticated && <AuthenticatedStack />}
     </NavigationContainer>
   );
 
 }
 
 function Root() {
+  const authCtx = useContext(AuthContext);
+  const { isLoading } = authCtx.authState;
+
+  useEffect(() => {
+    async function fetchToken() {
+      authCtx.authenticateLoading();
+      const storedToken = await AsyncStorage.getItem('token');
+
+      if (storedToken) {
+        authCtx.authenticateSuccess(storedToken);
+      }
+      authCtx.authenticateStopLoading();
+    }
+
+    fetchToken();
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   // check for jwt token and return Navigation component
   return <Navigation />
 }
@@ -150,7 +180,9 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <Root />
+      <AuthContextProvider>
+        <Root />
+      </AuthContextProvider>
     </>
   );
 }

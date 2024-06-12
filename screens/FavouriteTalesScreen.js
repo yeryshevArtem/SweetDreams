@@ -8,7 +8,7 @@ import Background from '../components/ui/Background';
 import TalesList from '../components/Tales/TalesList';
 
 
-function FavouriteTales() {
+function FavouriteTalesScreen() {
     const talesCtx = useContext(TalesContext);
 
     const { data, error, isLoading } = talesCtx.talesState;
@@ -25,7 +25,7 @@ function FavouriteTales() {
     );
 }
 
-export default FavouriteTales;
+export default FavouriteTalesScreen;
 
 const styles = StyleSheet.create({
     container: {

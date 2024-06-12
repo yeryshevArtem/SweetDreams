@@ -8,6 +8,9 @@ export const templates = {
     taleImageError: 'Cannot upload tale image.',
     likePanelErrorTitle: 'An error occured',
     likePanelErrorBody: 'When you try to like this tale, something went wrong. Please try again later.',
-    createNewUser: "Create a new user",
-    login: "Log in instead"
+    createNewUserNavigationLink: "Create a new user",
+    loginNavigationLink: "Log in instead",
+    login: 'Log in',
+    signUp: 'Sign up',
+    signUpErrorBody: 'When you tried to register in the app, the error occured. Please try again later.'
 };

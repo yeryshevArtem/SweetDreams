@@ -1,12 +1,29 @@
-import { View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import AuthContent from '../components/Auth/AuthContent';
+// ui
 import Background from '../components/ui/Background';
 
-function Login() {
+function LoginScreen() {
+    function handleLogin() {
+        console.log('clicked on login')
+    }
+
     return (
-        <Background>
-            <Text>Login</Text>
+        <Background style={styles.container}>
+            <View style={styles.signUpBox}>
+                <AuthContent isLogin onSubmit={handleLogin} />
+            </View>
         </Background>
     );
 }
 
-export default Login;
+export default LoginScreen;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
+    signUpBox: {
+        marginTop: 20
+    }
+});

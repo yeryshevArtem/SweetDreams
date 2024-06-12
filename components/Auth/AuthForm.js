@@ -3,8 +3,10 @@ import { View, StyleSheet } from 'react-native';
 // ui
 import Input from "../ui/Input";
 import Button from '../ui/Button';
+// constants 
+import { templates } from '../../constants/templates';
 
-function AuthForm({ onSubmit }) {
+function AuthForm({ onSubmit, isLogin }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -19,6 +21,13 @@ function AuthForm({ onSubmit }) {
                 break;
             }
         }
+    }
+
+    function confirmHandler() {
+        onSubmit({
+            email, 
+            password
+        });
     }
 
     return (
@@ -36,7 +45,9 @@ function AuthForm({ onSubmit }) {
                 secure
             />
             <View style={styles.buttonsBox}>
-                <Button text="Sumbit" onClick={onSubmit} />
+                <Button onPress={confirmHandler}>
+                    { isLogin ? templates.login : templates.signUp }
+                </Button>
             </View>
         </View>
     );  

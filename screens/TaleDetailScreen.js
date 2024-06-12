@@ -11,7 +11,7 @@ import { GlobalStyles } from '../constants/styles';
 // components
 import LikePanel from '../components/Tales/LikePanel';
 
-function TaleDetail({ route, navigation }) {
+function TaleDetailScreen({ route, navigation }) {
     const params = route.params;
     const talesCtx = useContext(TalesContext);
     const { data: talesData, error, isLoading } = talesCtx.talesState;
@@ -75,7 +75,7 @@ function TaleDetail({ route, navigation }) {
     );
 }
 
-export default TaleDetail;
+export default TaleDetailScreen;
 
 const styles = StyleSheet.create({
     container: {

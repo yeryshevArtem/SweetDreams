@@ -4,9 +4,11 @@ import AuthContent from '../components/Auth/AuthContent';
 import Background from '../components/ui/Background';
 
 function SignUp() {
+
     function handleSignUp() {
         console.log('clicked on register')
     }
+
     return (
         <Background style={styles.container}>
             <View style={styles.signUpBox}>

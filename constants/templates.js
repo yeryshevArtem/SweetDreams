@@ -7,5 +7,7 @@ export const templates = {
     playerCoverError: 'Cannot upload the cover.',
     taleImageError: 'Cannot upload tale image.',
     likePanelErrorTitle: 'An error occured',
-    likePanelErrorBody: 'When you try to like this tale, something went wrong. Please try again later.'
+    likePanelErrorBody: 'When you try to like this tale, something went wrong. Please try again later.',
+    createNewUser: "Create a new user",
+    login: "Log in instead"
 };

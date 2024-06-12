@@ -1,7 +1,7 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { GlobalStyles } from '../../constants/styles';
 
-function Input({ labelText, onChange, value }) {
+function Input({ labelText, onChange, value, keyboardType, secure }) {
     return (
         <View style={styles.container}>
             <Text style={styles.label}>{labelText}</Text>
@@ -9,6 +9,8 @@ function Input({ labelText, onChange, value }) {
                 style={styles.input}
                 value={value}
                 onChangeText={onChange}
+                keyboardType={keyboardType}
+                secureTextEntry={secure}
             />
         </View>
     );
@@ -22,7 +24,8 @@ const styles = StyleSheet.create({
     },
     label: {
         fontSize: 20,
-        color: GlobalStyles.colors.primary1
+        color: GlobalStyles.colors.primary1,
+        paddingBottom: 10
     },
     input: {
         borderColor: GlobalStyles.colors.primary1,

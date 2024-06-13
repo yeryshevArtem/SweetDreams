@@ -15,9 +15,6 @@ function AuthContent({ onAuthenticate, isLogin }) {
     }
 
     function submitHandler({ email, password }) {
-        console.log(email)
-        console.log(password)
-        // validate here
         onAuthenticate({
             email, 
             password

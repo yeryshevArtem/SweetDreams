@@ -12,5 +12,8 @@ export const templates = {
     loginNavigationLink: "Log in instead",
     login: 'Log in',
     signUp: 'Sign up',
-    signUpErrorBody: 'When you tried to register in the app, the error occured. Please try again later.'
+    signUpErrorBody: 'When you tried to register in the app, the error occured. Please try again later.',
+    profileSettingsAccountDetailTitle: 'Account Details',
+    profileSettingsCustomerSupportTitle: 'Our customer care',
+    profileSettingsLogoutTitle: 'Log out'
 };

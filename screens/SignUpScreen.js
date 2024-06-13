@@ -38,7 +38,7 @@ function SignUpScreen() {
     return (
         <Background style={styles.container}>
             <View style={styles.signUpBox}>
-                <AuthContent onSubmit={handleSignUp} />
+                <AuthContent onAuthenticate={handleSignUp} />
             </View>
         </Background>
     );

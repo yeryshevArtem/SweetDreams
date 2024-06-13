@@ -6,19 +6,29 @@ import LinkButton from '../ui/LinkButton';
 // constants
 import { templates } from '../../constants/templates';
 
-function AuthContent({ onSubmit, isLogin }) {
+function AuthContent({ onAuthenticate, isLogin }) {
     const navigation = useNavigation();
 
-    function switchToAuthPage() {
+    function switchAuthMode() {
         const authScreen = isLogin ? 'Signup' : 'Login';
         navigation.navigate(authScreen);
     }
 
+    function submitHandler({ email, password }) {
+        console.log(email)
+        console.log(password)
+        // validate here
+        onAuthenticate({
+            email, 
+            password
+        });
+    }
+
     return (
         <View style={styles.container}>
-            <AuthForm onSubmit={onSubmit} isLogin={isLogin} />
+            <AuthForm onSubmit={submitHandler} isLogin={isLogin} />
             <View>
-                <LinkButton onPress={switchToAuthPage}>
+                <LinkButton onPress={switchAuthMode}>
                     {isLogin ? templates.createNewUserNavigationLink : templates.loginNavigationLink}
                 </LinkButton>
             </View>

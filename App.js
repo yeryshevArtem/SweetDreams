@@ -20,6 +20,8 @@ import AuthContextProvider from './store/auth-context';
 import { AuthContext } from './store/auth-context';
 // ui
 import Loading from './components/ui/Loading';
+// constants
+import { templates } from './constants/templates';
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -96,7 +98,7 @@ function AuthenticatedStack() {
           name="Home"
           component={TalesOverviewScreen}
           options={{
-            title: "10 Most Popular Fairy Tale Stories of All Time",
+            title: templates.homePageHeaderTitle,
             tabBarLabel: "Home Page",
             tabBarIcon: ({ color, size }) => <Ionicons color={color} size={size} name="home" />,
             headerStyle: {
@@ -110,7 +112,7 @@ function AuthenticatedStack() {
           name="Favourites"
           component={FavouriteTalesScreen}
           options={{
-            title: "My Top Tales",
+            title: templates.favouritesPageHeaderTitle,
             tabBarLabel: "Favourites",
             tabBarIcon: ({ color, size }) => <Ionicons size={size} color={color} name="heart" />,
             headerStyle: {
@@ -123,7 +125,7 @@ function AuthenticatedStack() {
           name="Profile"
           component={ProfileScreen}
           options={{
-            title: "Profile",
+            title: templates.profilePageHeaderTitle,
             tabBarLabel: "Profile",
             tabBarIcon: ({ color, size }) => <Ionicons size={size} color={color} name="settings" />,
             headerStyle: {

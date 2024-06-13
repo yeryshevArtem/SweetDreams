@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
         opacity: 0.75
     },
     buttonContainer: {
-        borderWidth: 1,
         backgroundColor: GlobalStyles.colors.primary4,
         padding: 15,
         borderRadius: 10

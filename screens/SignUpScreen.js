@@ -23,12 +23,11 @@ function SignUpScreen() {
                 password,
                 mode: 'signUp'
             });
-            console.log(jwt)
             authCtx.authenticateSuccess(jwt);
 
         } catch (err) {
             authCtx.authenticateError(err);
-            Alert.alert(templates.supportErrorTitle, templates.signUpErrorBody);
+            Alert.alert(templates.signUpErrorTitle, templates.signUpErrorBody);
         }
     }
 

@@ -8,12 +8,18 @@ export const templates = {
     taleImageError: 'Cannot upload tale image.',
     likePanelErrorTitle: 'An error occured',
     likePanelErrorBody: 'When you try to like this tale, something went wrong. Please try again later.',
-    createNewUserNavigationLink: "Create a new user",
-    loginNavigationLink: "Log in instead",
+    createNewUserNavigationLink: "Create an account",
+    loginNavigationLink: "I have an account",
     login: 'Log in',
     signUp: 'Sign up',
+    signUpErrorTitle: 'Error Occured',
     signUpErrorBody: 'When you tried to register in the app, the error occured. Please try again later.',
     profileSettingsAccountDetailTitle: 'Account Details',
     profileSettingsCustomerSupportTitle: 'Our customer care',
-    profileSettingsLogoutTitle: 'Log out'
+    profileSettingsLogoutTitle: 'Log out',
+    loginErrorTitle: 'Error Occured',
+    loginErrorBody: 'When you tried to authorize, something went wrong. Please try again a bit later.',
+    homePageHeaderTitle: '10 Most Popular Fairy Tale Stories of All Time',
+    favouritesPageHeaderTitle: 'Your top tales that make your day better',
+    profilePageHeaderTitle: 'Profile Settings'
 };

@@ -1,12 +1,12 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-import { GlobalStyles } from '../../constants/styles';
+import { GlobalStyles } from '../../../constants/styles';
 
-function Input({ labelText, onChange, value, keyboardType, secure }) {
+function Input({ labelText, onChange, value, keyboardType, secure, hasError }) {
     return (
         <View style={styles.container}>
-            <Text style={styles.label}>{labelText}</Text>
+            <Text style={[styles.label, hasError && styles.labelError]}>{labelText}</Text>
             <TextInput
-                style={styles.input}
+                style={[styles.input, hasError && styles.inputError]}
                 value={value}
                 onChangeText={onChange}
                 keyboardType={keyboardType}
@@ -35,5 +35,11 @@ const styles = StyleSheet.create({
         borderRadius: 7,
         fontSize: 16,
         backgroundColor: GlobalStyles.colors.primary1,
+    },
+    inputError: {
+        borderColor: GlobalStyles.colors.error
+    },
+    labelError: {
+        color: GlobalStyles.colors.error
     }
 });

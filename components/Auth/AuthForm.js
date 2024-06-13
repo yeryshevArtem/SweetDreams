@@ -1,8 +1,9 @@
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 // ui
-import Input from "../ui/Input";
+import Input from '../ui/form/Input';
 import Button from '../ui/Button';
+import ErrorMessage from '../ui/form/ErrorMessage';
 // constants 
 import { templates } from '../../constants/templates';
 
@@ -35,8 +36,8 @@ const validationRules = {
             message: 'Password is required'
         },
         minLength: {
-            value: 10,
-            message: 'Email must be at least 10 characters long'
+            value: 7,
+            message: 'Email must be at least 7 characters long'
         }
     }
 };
@@ -73,11 +74,12 @@ function AuthForm({ onSubmit, isLogin }) {
                         value={value}
                         onChange={onChange}
                         keyboardType="email-address"
+                        hasError={errors && errors.email && errors.email.message}
                     />
                 )}
                 name="email"
             />
-            {errors.email && <Text>{errors.email.message}</Text>}
+            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
             <Controller
                 control={control}
                 rules={validationRules.password}
@@ -87,11 +89,12 @@ function AuthForm({ onSubmit, isLogin }) {
                         value={value}
                         onChange={onChange}
                         secure
+                        hasError={errors && errors.password && errors.password.message}
                     />
                 )}
                 name="password"
             />
-            {errors.password && <Text>{errors.password.message}</Text>}
+            {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
             <View style={styles.buttonsBox}>
                 <Button onPress={handleSubmit(confirmHandler)}>
                     {isLogin ? templates.login : templates.signUp}

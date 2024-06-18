@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { API_DOMAIN, AUTH_DOMAIN, WEB_API_KEY } from '../firebase/config';
+import { API_DOMAIN } from '../firebase/config';
+import { auth } from '../firebase/storage';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 export async function fetchAllTales(token) {
     const tales = [];
@@ -34,18 +36,21 @@ export async function updateTale({ id, data, token }) {
     }
 }
 
+
 export async function authorize({ email, password, mode }) {
     // method - signUp
     try {
-        const response = await axios.post(`${AUTH_DOMAIN}/v1/accounts:${mode}?key=${WEB_API_KEY}`, {
-            email,
-            password,
-            returnSecureToken: true
-        });
-        const token = response.data.idToken;
-
+        let userCredential;
+        if (mode === 'signUp') {
+            userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        } else {
+            userCredential = await signInWithEmailAndPassword(auth, email, password);
+        }
+        const token = await userCredential.user.getIdToken();
         return token;
     } catch (err) {
         throw new Error(err);
     }
 }
+
+

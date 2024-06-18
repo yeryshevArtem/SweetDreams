@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { API_DOMAIN, AUTH_DOMAIN, WEB_API_KEY } from '../firebase/config';
 
-export async function fetchAllTales() {
+export async function fetchAllTales(token) {
     const tales = [];
     try {
-        const response = await axios.get(`${API_DOMAIN}/tales.json`);
+        const response = await axios.get(`${API_DOMAIN}/tales.json?auth=${token}`);
         for (let key of Object.keys(response.data)) {
             const tale = {
                 id: key,
@@ -22,9 +22,9 @@ export async function fetchAllTales() {
 
 }
 
-export async function updateTale({ id, data }) {
+export async function updateTale({ id, data, token }) {
     try {
-        const response = await axios.patch(`${API_DOMAIN}/tales/${id}.json`, data);
+        const response = await axios.patch(`${API_DOMAIN}/tales/${id}.json?auth=${token}`, data);
         return {
             id,
             ...response.data
@@ -38,7 +38,7 @@ export async function authorize({ email, password, mode }) {
     // method - signUp
     try {
         const response = await axios.post(`${AUTH_DOMAIN}/v1/accounts:${mode}?key=${WEB_API_KEY}`, {
-            email, 
+            email,
             password,
             returnSecureToken: true
         });

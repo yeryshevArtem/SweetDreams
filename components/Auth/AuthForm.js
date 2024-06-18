@@ -1,9 +1,9 @@
 import { View, StyleSheet } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 // ui
-import Input from '../ui/form/Input';
+import Input from '../ui/Form/Input';
 import Button from '../ui/Button';
-import ErrorMessage from '../ui/form/ErrorMessage';
+import ErrorMessage from '../ui/Form/ErrorMessage';
 // constants 
 import { templates } from '../../constants/templates';
 

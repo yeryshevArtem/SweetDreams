@@ -6,12 +6,15 @@ import IconButton from '../ui/IconButton';
 import { updateTale } from '../../util/http';
 // store
 import { TalesContext } from '../../store/tales-context';
+import { AuthContext } from '../../store/auth-context';
 // constants
 import { GlobalStyles } from '../../constants/styles';
 import { templates } from '../../constants/templates';
 
 function LikePanel({ switched, id }) {
     const talesCtx = useContext(TalesContext);
+    const authCtx = useContext(AuthContext);
+    const { token } = authCtx.authState;
 
     async function addLikeHandler() {
         try {
@@ -20,7 +23,8 @@ function LikePanel({ switched, id }) {
                 id,
                 data: {
                     liked: !switched
-                }
+                },
+                token
             });
 
             talesCtx.updateTaleSuccess(updatedTale);

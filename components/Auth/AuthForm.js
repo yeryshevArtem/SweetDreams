@@ -11,33 +11,33 @@ const validationRules = {
     email: {
         minLength: {
             value: 10,
-            message: 'Email must be at least 10 characters long'
+            message: templates.emailValidationErrorMinLength
         },
         maxLength: {
             value: 50,
-            message: 'Email cannot contain more than 50 characters'
+            message: templates.emailValidationErrorMaxLength
         },
         required: {
             value: true,
-            message: 'Email is required',
+            message: templates.emailValidationErrorRequired
         },
         pattern: {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-            message: 'Invalid email address'
+            message: templates.emailValidationErrorInvalidFormat
         }
     },
     password: {
         maxLength: {
             value: 20,
-            message: 'Password cannot contain more than 20 characters'
+            message: templates.passwordValidationErrorMaxLength
         },
         required: {
             value: true,
-            message: 'Password is required'
+            message: templates.passwordValidationErrorRequired
         },
         minLength: {
             value: 7,
-            message: 'Email must be at least 7 characters long'
+            message: templates.passwordValidationErrorMinLength
         }
     }
 };
@@ -70,7 +70,7 @@ function AuthForm({ onSubmit, isLogin }) {
                 rules={validationRules.email}
                 render={({ field: { onChange, value } }) => (
                     <Input
-                        labelText="Email Address"
+                        labelText={templates.emailInputFieldLabel}
                         value={value}
                         onChange={onChange}
                         keyboardType="email-address"
@@ -85,7 +85,7 @@ function AuthForm({ onSubmit, isLogin }) {
                 rules={validationRules.password}
                 render={({ field: { onChange, value } }) => (
                     <Input
-                        labelText="Password"
+                        labelText={templates.passwordInputFieldLabel}
                         value={value}
                         onChange={onChange}
                         secure

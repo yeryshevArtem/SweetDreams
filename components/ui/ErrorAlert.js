@@ -2,15 +2,14 @@ import { View, Text, StyleSheet } from 'react-native';
 // ui
 import Button from './Button';
 import { GlobalStyles } from '../../constants/styles';
+// constants 
+import { templates } from '../../constants/templates';
 
-const DEFAULT_MESSAGE = "Someting went wrong. Please try to reload the application.";
-const BUTTON_CONFIRM_TITLE = "OK";
-
-function Error({ message = DEFAULT_MESSAGE, onConfirm, btnConfirmTitle = BUTTON_CONFIRM_TITLE }) {
+function Error({ message = templates.errorAlertDefaultBody, onConfirm, btnConfirmTitle = templates.errorAlertDefaultButtonText }) {
     return (
         <View style={styles.container}>
             <View style={styles.errorBox}>
-                <Text style={styles.errorText}>An error occured</Text>
+                <Text style={styles.errorText}>{templates.errorAlertDefaultTitle}</Text>
                 <Text style={styles.errorText}>{message}</Text>
                 {
                     onConfirm && (

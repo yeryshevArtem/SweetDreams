@@ -5,7 +5,7 @@ import { Audio } from "expo-av";
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/storage';
 // ui
-import Error from "./Error";
+import Error from "./ErrorAlert";
 import Loading from "./Loading";
 import IconButton from "./IconButton";
 import SeekBar from "./SeekBar";

@@ -33,7 +33,7 @@ function AuthStack() {
         name="Signup"
         component={SignUpScreen}
         options={{
-          headerTitle: 'Sign Up',
+          headerTitle: templates.signUp,
           headerStyle: {
             backgroundColor: GlobalStyles.colors.primary2
           },
@@ -62,8 +62,6 @@ function TalesOverviewScreen() {
         name="TalesList"
         component={AllTalesScreen}
         options={{
-          headerTitle: "The most interesting tales",
-          headerTitleAlign: "left",
           headerStyle: {
             backgroundColor: GlobalStyles.colors.primary2
           },
@@ -99,7 +97,7 @@ function AuthenticatedStack() {
           component={TalesOverviewScreen}
           options={{
             title: templates.homePageHeaderTitle,
-            tabBarLabel: "Home Page",
+            tabBarLabel: templates.homeTabBarLabel,
             tabBarIcon: ({ color, size }) => <Ionicons color={color} size={size} name="home" />,
             headerStyle: {
               backgroundColor: GlobalStyles.colors.primary2,
@@ -113,7 +111,7 @@ function AuthenticatedStack() {
           component={FavouriteTalesScreen}
           options={{
             title: templates.favouritesPageHeaderTitle,
-            tabBarLabel: "Favourites",
+            tabBarLabel: templates.favouritesTabBarLabel,
             tabBarIcon: ({ color, size }) => <Ionicons size={size} color={color} name="heart" />,
             headerStyle: {
               backgroundColor: GlobalStyles.colors.primary2
@@ -126,7 +124,7 @@ function AuthenticatedStack() {
           component={ProfileScreen}
           options={{
             title: templates.profilePageHeaderTitle,
-            tabBarLabel: "Profile",
+            tabBarLabel: templates.profileTabBarLabel,
             tabBarIcon: ({ color, size }) => <Ionicons size={size} color={color} name="settings" />,
             headerStyle: {
               backgroundColor: GlobalStyles.colors.primary2

@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 // util
 import { fetchAllTales } from '../util/http';
 // components
-import Error from '../components/ui/Error';
+import Error from '../components/ui/ErrorAlert';
 import TalesList from '../components/Tales/TalesList';
 // store
 import { TalesContext } from '../store/tales-context';
@@ -11,6 +11,8 @@ import { AuthContext } from '../store/auth-context';
 // UI 
 import Background from '../components/ui/Background';
 import Loading from '../components/ui/Loading';
+// constants
+import { templates } from '../constants/templates';
 
 function AllTalesScreen() {
     const talesCtx = useContext(TalesContext);
@@ -38,7 +40,7 @@ function AllTalesScreen() {
     return (
         <Background style={styles.container}>
             {
-                error && !isLoading && <Error message="Cannot fetch all tales, try to reload the page." onConfirm={closeError} />
+                error && !isLoading && <Error message={templates.allTalesError} onConfirm={closeError} />
             }
             {
                 isLoading && <Loading />

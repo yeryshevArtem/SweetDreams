@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { storage } from '../../firebase/storage';
 // ui
 import Loading from '../ui/Loading';
-import Error from '../ui/Error';
+import Error from '../ui/ErrorAlert';
 // constants
 import { GlobalStyles } from '../../constants/styles';
 import { templates } from '../../constants/templates';

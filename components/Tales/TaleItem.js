@@ -82,7 +82,9 @@ const styles = StyleSheet.create({
         width: 150
     },
     title: {
-        color: GlobalStyles.colors.primary1
+        color: GlobalStyles.colors.primary1,
+        fontSize: 15,
+        fontWeight: '700'
     },
     image: {
         width: 150,

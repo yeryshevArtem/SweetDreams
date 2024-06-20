@@ -38,15 +38,15 @@ function TaleItem({ title, imageUrl, id }) {
 
     return (
         <Pressable style={({ pressed }) => [styles.container, pressed && styles.pressed]} onPress={talePressHandler}>
-            <View style={styles.coverBox}>
+            <View style={styles.imageContainer}>
                 {
                     isFetching && <Loading />
                 }
                 {
                     imgUri && (
-                        <Image 
-                            source={{ uri: imgUri }} 
-                            style={styles.image} 
+                        <Image
+                            source={{ uri: imgUri }}
+                            style={styles.image}
                             onLoadStart={() => setIsFetching(true)}
                             onLoadEnd={() => setIsFetching(false)}
                         />
@@ -55,10 +55,11 @@ function TaleItem({ title, imageUrl, id }) {
                 {
                     error && !isFetching && <Error message={templates.taleImageError} />
                 }
-                <View style={styles.titleBox}>
-                    <Text style={styles.title}>{title}</Text>
-                </View>
             </View>
+            <View style={styles.titleBox}>
+                <Text style={styles.title}>{title}</Text>
+            </View>
+
         </Pressable>
     );
 }
@@ -73,8 +74,13 @@ const styles = StyleSheet.create({
         flex: 1,
         marginHorizontal: 10
     },
-    coverBox: {
-        flex: 1
+    imageContainer: {
+        maxHeight: 150,
+        maxWidth: 150,
+        width: 150,
+        height: 150,
+        flex: 1,
+        alignItems: 'center'
     },
     titleBox: {
         flex: 1,

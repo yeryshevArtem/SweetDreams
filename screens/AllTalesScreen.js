@@ -40,7 +40,11 @@ function AllTalesScreen() {
     return (
         <Background style={styles.container}>
             {
-                error && !isLoading && <Error message={templates.allTalesError} onConfirm={closeError} />
+                error && !isLoading && (
+                    <View style={styles.errorContainer}>
+                        <Error message={templates.allTalesError} onConfirm={closeError} />
+                    </View>
+                )
             }
             {
                 isLoading && <Loading />
@@ -63,5 +67,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         marginTop: 25
+    },
+    errorContainer: {
+        paddingHorizontal: 10,
+        paddingVertical: 10
     }
 });

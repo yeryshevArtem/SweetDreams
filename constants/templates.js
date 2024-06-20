@@ -37,5 +37,6 @@ export const templates = {
     allTalesError: 'Cannot fetch all tales, try to reload the page.',
     homeTabBarLabel: 'Home Page',
     favouritesTabBarLabel: 'Favourites',
-    profileTabBarLabel: 'Profile'
+    profileTabBarLabel: 'Profile',
+    talesEmpty: 'Oops... Seems like you do not have any tale. Please add at first.',
 };

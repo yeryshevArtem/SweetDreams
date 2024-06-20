@@ -1,5 +1,9 @@
 import { FlatList, View, StyleSheet } from 'react-native';
 import TaleItem from './TaleItem';
+// ui
+import Empty from '../ui/Empty';
+// constants
+import { templates } from '../../constants/templates';
 
 function renderAllTalesItem({ item }) {
     return (
@@ -22,13 +26,17 @@ function TalesList({ allTales, horizontal = false }) {
     }
     return (
         <View style={styles.container}>
-            <FlatList
-                data={allTales}
-                renderItem={renderAllTalesItem}
-                keyExtractor={(item) => item.id}
-                horizontal={horizontal}
-                {...verticalProps}
-            />
+            {
+                allTales.length ? (
+                    <FlatList
+                    data={allTales}
+                    renderItem={renderAllTalesItem}
+                    keyExtractor={(item) => item.id}
+                    horizontal={horizontal}
+                    {...verticalProps}
+                />
+                ) : <Empty>{templates.talesEmpty}</Empty>
+            }
         </View>
     );
 };

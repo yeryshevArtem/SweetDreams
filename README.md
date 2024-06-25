@@ -74,28 +74,21 @@ Follow these steps to get the application running on your local machine.
 
 ## Firebase
 
-Sweet Dreams uses Firebase as a storage and realtime database. In order to get an access to the server-side you need to create a firebase config file, name it as `config.js` and put in `./firebase` directory.
+Sweet Dreams uses Firebase as a storage and realtime database. 
+In order to get an access to the server-side you need to create .env file with all related variables.
 
-`config.js` must have the following format: 
+`.env` must have the following variales: 
 ```
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-    apiKey: "<YOUR_WEB_API_KEY>",
-    authDomain: "<YOUR_AUTH_DOMAIN>",
-    projectId: "<PROJECT_ID>",
-    storageBucket: "<STORAGE_BUCKET>",
-    messagingSenderId: "<MESSAGING_SENDER_ID>",
-    appId: "<APP_ID>",
-    measurementId: "<MEASUREMENT_ID>",
-};
-
-
-export const WEB_API_KEY = '<YOUR_WEB_API_KEY>';
-export const API_DOMAIN = '<YOUR_API_DOMAIN>';
-export const AUTH_DOMAIN = '<YOUR_AUTH_DOMAIN>';
-
-export default firebaseConfig;
+EXPO_PUBLIC_FIREBASE_API_KEY=<YOUR_DATA>
+EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=<YOUR_DATA>
+EXPO_PUBLIC_FIREBASE_PROJECT_ID=<YOUR_DATA>
+EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET=<YOUR_DATA>
+EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=<YOUR_DATA>
+EXPO_PUBLIC_FIREBASE_APP_ID=<YOUR_DATA>
+EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID=<YOUR_DATA>
+EXPO_PUBLIC_WEB_API_KEY=<YOUR_DATA>
+EXPO_PUBLIC_API_DOMAIN=<YOUR_DATA>
+EXPO_PUBLIC_AUTH_DOMAIN=<YOUR_DATA>
 ```
 
 ## Usage

@@ -13,7 +13,8 @@
     },
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.0",
+      "bundleIdentifier": "sweet-dreams"
     },
     "android": {
       "versionCode": 1,

@@ -11,9 +11,17 @@
       "distribution": "internal",
       "android": {
         "buildType": "apk"
+      },
+      "ios": {
+        "simulator": true
       }
     },
-    "production": {}
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_API_DOMAIN": "https://sweet-dreams-bc3b1-default-rtdb.firebaseio.com",
+        "EXPO_PUBLIC_AUTH_DOMAIN": "https://identitytoolkit.googleapis.com"
+      }
+    }
   },
   "submit": {
     "production": {}

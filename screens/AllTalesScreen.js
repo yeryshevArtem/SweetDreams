@@ -37,18 +37,26 @@ function AllTalesScreen() {
         talesCtx.fetchTalesError(null);
     };
 
+    if (error && !isLoading) {
+        return (
+            <Background style={styles.container}>
+                <View style={styles.errorContainer}>
+                    <Error message={templates.allTalesError} onConfirm={closeError} />
+                </View>
+            </Background>
+        );
+    }
+
+    if (isLoading) {
+        return (
+            <Background style={styles.container}>
+                <Loading />
+            </Background>
+        );
+    }
+
     return (
         <Background style={styles.container}>
-            {
-                error && !isLoading && (
-                    <View style={styles.errorContainer}>
-                        <Error message={templates.allTalesError} onConfirm={closeError} />
-                    </View>
-                )
-            }
-            {
-                isLoading && <Loading />
-            }
             <View style={styles.listBox}>
                 <TalesList allTales={data} horizontal={true} />
             </View>

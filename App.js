@@ -4,7 +4,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { MD3LightTheme as DefaultTheme, PaperProvider } from 'react-native-paper';
+import {
+	MD3LightTheme as DefaultTheme,
+	PaperProvider,
+} from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
 // screens
 import AllTalesScreen from "./screens/AllTalesScreen";
@@ -22,7 +25,7 @@ import { AuthContext } from "./store/auth-context";
 // ui
 import Loading from "./components/ui/Loading";
 // constants
-import { templates } from "./constants/templates";
+import { templates } from "./constants/locale";
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -185,12 +188,14 @@ function Root() {
 const theme = {
 	...DefaultTheme,
 	colors: {
-	  ...DefaultTheme.colors,
-	  primary: "#B9E524",
-	  secondary: "#1F1840",
-	  linkColor: "#FFFFFF",
+		...DefaultTheme.colors,
+		primary: "#A5FF90",
+		secondary: "#1F1840",
+		linkColor: "#FFFFFF",
+		inactiveBtnColor: "#FFFFFF",
+		errorTextColor: "#FFFFFF",
 	},
-  };
+};
 
 export default function App() {
 	return (

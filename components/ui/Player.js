@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import { Audio } from "expo-av";
 // firebase
 import { ref, getDownloadURL } from "firebase/storage";
@@ -7,11 +7,10 @@ import { storage } from "../../firebase/storage";
 // ui
 import Error from "./ErrorAlert";
 import Loading from "./Loading";
-import IconButton from "./IconButton";
+import { IconButton, useTheme } from "react-native-paper";
 import SeekBar from "./SeekBar";
 // constants
-import { GlobalStyles } from "../../constants/styles";
-import { templates } from "../../constants/templates";
+import { templates } from "../../constants/locale";
 
 function Player({
 	imageUrl,
@@ -24,6 +23,8 @@ function Player({
 	const [audioUri, setAudioUri] = useState("");
 	const [isFetching, setIsFetching] = useState(false);
 	const [error, setError] = useState(null);
+	// theme
+	const theme = useTheme();
 	// audio related state
 	const soundRef = useRef(null);
 
@@ -144,21 +145,24 @@ function Player({
 				<View style={styles.buttonsBox}>
 					<IconButton
 						onPress={playBack}
+						mode="text"
+						icon="skip-previous-circle"
+						iconColor={theme.colors.primary}
 						size={75}
-						color={GlobalStyles.colors.primary1}
-						icon="play-back-circle"
 					/>
 					<IconButton
 						onPress={handlePlayPause}
+						mode="text"
+						iconColor={theme.colors.primary}
 						size={75}
-						color={GlobalStyles.colors.primary1}
 						icon={status.isPlaying ? "pause-circle" : "play-circle"}
 					/>
 					<IconButton
 						onPress={playForward}
+						iconColor={theme.colors.primary}
 						size={75}
-						color={GlobalStyles.colors.primary1}
-						icon="play-forward-circle"
+						mode="text"
+						icon="skip-next-circle"
 					/>
 				</View>
 			</View>

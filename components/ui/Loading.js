@@ -1,10 +1,15 @@
-import { View, ActivityIndicator, StyleSheet } from "react-native";
-import { GlobalStyles } from "../../constants/styles";
+import { View, StyleSheet } from "react-native";
+import { ActivityIndicator, useTheme } from "react-native-paper";
 
-function Loading() {
+function Loading({ size = "large" }) {
+	const theme = useTheme();
 	return (
 		<View style={styles.container}>
-			<ActivityIndicator size="large" color={GlobalStyles.colors.primary4} />
+			<ActivityIndicator
+				animating={true}
+				color={theme.colors.primary}
+				size={size}
+			/>
 		</View>
 	);
 }

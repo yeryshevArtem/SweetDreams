@@ -14,7 +14,7 @@ import LikePanel from "../components/Tales/LikePanel";
 function TaleDetailScreen({ route, navigation }) {
 	const params = route.params;
 	const talesCtx = useContext(TalesContext);
-	const { data: talesData, error, isLoading } = talesCtx.talesState;
+	const { data: talesData } = talesCtx.talesState;
 
 	const selectedTale = talesData.filter((tale) => tale.id === params.taleId)[0];
 	const currIndex = talesData.findIndex((tale) => tale.id === params.taleId);

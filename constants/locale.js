@@ -22,7 +22,7 @@ export const templates = {
 	loginErrorTitle: "Error Occured",
 	loginErrorBody:
 		"When you tried to authorize, something went wrong. Please try again a bit later.",
-	homePageHeaderTitle: "10 Most Popular Fairy Tale Stories of All Time",
+	homePageHeaderTitle: "10 Most Popular Tale Stories of All Time",
 	favouritesPageHeaderTitle: "Your top tales that make your day better",
 	profilePageHeaderTitle: "Profile Settings",
 	emailValidationErrorMinLength: "Email must be at least 10 characters long",

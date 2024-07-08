@@ -7,7 +7,7 @@ import Loading from "../components/ui/Loading";
 // utils
 import { authorize } from "../util/http";
 // constants
-import { templates } from "../constants/templates";
+import { templates } from "../constants/locale";
 // store
 import { AuthContext } from "../store/auth-context";
 

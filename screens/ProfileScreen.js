@@ -5,7 +5,7 @@ import Background from "../components/ui/Background";
 // components
 import SettingsList from "../components/Account/SettingsList";
 // constants
-import { templates } from "../constants/templates";
+import { templates } from "../constants/locale";
 // store
 import { AuthContext } from "../store/auth-context";
 
@@ -13,14 +13,14 @@ function ProfileScreen() {
 	const authCtx = useContext(AuthContext);
 
 	const settingsOptions = [
-		{
-			id: "accountDetails",
-			title: templates.profileSettingsAccountDetailTitle,
-			callbackFn: () => {
-				console.log("Naviate to account details");
-			},
-			icon: "person",
-		},
+		// {
+		// 	id: "accountDetails",
+		// 	title: templates.profileSettingsAccountDetailTitle,
+		// 	callbackFn: () => {
+		// 		console.log("Naviate to account details");
+		// 	},
+		// 	icon: "person",
+		// },
 		{
 			id: "support",
 			title: templates.profileSettingsCustomerSupportTitle,

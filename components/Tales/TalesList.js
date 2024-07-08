@@ -3,7 +3,7 @@ import TaleItem from "./TaleItem";
 // ui
 import Empty from "../ui/Empty";
 // constants
-import { templates } from "../../constants/templates";
+import { templates } from "../../constants/locale";
 
 function renderAllTalesItem({ item }) {
 	return (

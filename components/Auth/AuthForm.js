@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import Input from "../ui/Form/Input";
 import { Button } from "react-native-paper";
 // constants
-import { templates } from "../../constants/templates";
+import { templates } from "../../constants/locale";
 
 const validationRules = {
 	email: {

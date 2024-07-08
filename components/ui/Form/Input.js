@@ -1,19 +1,23 @@
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { TextInput, HelperText } from 'react-native-paper';
+
 import { GlobalStyles } from "../../../constants/styles";
 
-function Input({ labelText, onChange, value, keyboardType, secure, hasError }) {
+function Input({ labelText, onChange, value, keyboardType, secure, error }) {
 	return (
 		<View style={styles.container}>
-			<Text style={[styles.label, hasError && styles.labelError]}>
-				{labelText}
-			</Text>
 			<TextInput
-				style={[styles.input, hasError && styles.inputError]}
 				value={value}
 				onChangeText={onChange}
 				keyboardType={keyboardType}
 				secureTextEntry={secure}
+				label={labelText}
+				type="flat"
+				error={error}
 			/>
+			<HelperText type="error" visible={error}>
+				{error}
+			</HelperText>
 		</View>
 	);
 }

@@ -2,8 +2,7 @@ import { View, StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 // ui
 import Input from "../ui/Form/Input";
-import Button from "../ui/Button";
-import ErrorMessage from "../ui/Form/ErrorMessage";
+import { Button } from "react-native-paper";
 // constants
 import { templates } from "../../constants/templates";
 
@@ -72,12 +71,11 @@ function AuthForm({ onSubmit, isLogin }) {
 						value={value}
 						onChange={onChange}
 						keyboardType="email-address"
-						hasError={errors && errors.email && errors.email.message}
+						error={errors && errors.email && errors.email.message}
 					/>
 				)}
 				name="email"
 			/>
-			{errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
 			<Controller
 				control={control}
 				rules={validationRules.password}
@@ -87,16 +85,13 @@ function AuthForm({ onSubmit, isLogin }) {
 						value={value}
 						onChange={onChange}
 						secure
-						hasError={errors && errors.password && errors.password.message}
+						error={errors && errors.password && errors.password.message}
 					/>
 				)}
 				name="password"
 			/>
-			{errors.password && (
-				<ErrorMessage>{errors.password.message}</ErrorMessage>
-			)}
 			<View style={styles.buttonsBox}>
-				<Button onPress={handleSubmit(confirmHandler)}>
+				<Button mode="contained" onPress={handleSubmit(confirmHandler)}>
 					{isLogin ? templates.login : templates.signUp}
 				</Button>
 			</View>

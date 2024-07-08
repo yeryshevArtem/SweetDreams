@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { MD3LightTheme as DefaultTheme, PaperProvider } from 'react-native-paper';
 import { Ionicons } from "@expo/vector-icons";
 // screens
 import AllTalesScreen from "./screens/AllTalesScreen";
@@ -180,12 +181,25 @@ function Root() {
 	return <Navigation />;
 }
 
+// theme
+const theme = {
+	...DefaultTheme,
+	colors: {
+	  ...DefaultTheme.colors,
+	  primary: "#B9E524",
+	  secondary: "#1F1840",
+	  linkColor: "#FFFFFF",
+	},
+  };
+
 export default function App() {
 	return (
 		<>
 			<StatusBar style="light" />
 			<AuthContextProvider>
-				<Root />
+				<PaperProvider theme={theme}>
+					<Root />
+				</PaperProvider>
 			</AuthContextProvider>
 		</>
 	);

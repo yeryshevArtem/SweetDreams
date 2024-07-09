@@ -210,9 +210,9 @@ const theme = {
 		// player
 		playerButtonGroupColor: "#FFFFFF",
 		// error banner
-		errorBannerContentColor: '#FFFFFF',
-		errorBannerIconColor: '#FFFFFF',
-		errorBannerBackgroundColor: '#E34F43'
+		errorBannerContentColor: "#FFFFFF",
+		errorBannerIconColor: "#FFFFFF",
+		errorBannerBackgroundColor: "#E34F43",
 	},
 };
 

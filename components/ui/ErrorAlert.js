@@ -7,7 +7,7 @@ function ErrorAlert({
 	message = locale.errorAlertDefaultBody,
 	size = 200,
 	actions = [],
-	iconSize=30
+	iconSize = 30,
 }) {
 	// theme
 	const theme = useTheme();
@@ -24,7 +24,7 @@ function ErrorAlert({
 			}}
 			icon={({ size }) => {
 				return (
-					<Icon     
+					<Icon
 						source="alert-circle-outline"
 						color={theme.colors.errorBannerIconColor}
 						size={iconSize}

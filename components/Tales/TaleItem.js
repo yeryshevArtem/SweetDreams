@@ -59,7 +59,7 @@ function TaleItem({ title, imageUrl, id }) {
 			<View style={styles.titleBox}>
 				<Text
 					variant="bodyMedium"
-					style={{ color: theme.colors.fontColor, fontWeight: 700 }}
+					style={[styles.textShadow, { color: theme.colors.fontColor }]}
 				>
 					{title}
 				</Text>
@@ -95,5 +95,10 @@ const styles = StyleSheet.create({
 		width: 150,
 		height: 150,
 		borderRadius: 10,
+	},
+	textShadow: {
+		textShadowColor: "rgba(0, 0, 0, 0.75)",
+		textShadowOffset: { width: -1, height: 1 },
+		textShadowRadius: 10,
 	},
 });

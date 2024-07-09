@@ -4,7 +4,7 @@ import AuthForm from "./AuthForm";
 // ui
 import { Button, useTheme } from "react-native-paper";
 // constants
-import { templates } from "../../constants/locale";
+import { locale } from "../../constants/locale";
 
 function AuthContent({ onAuthenticate, isLogin }) {
 	const navigation = useNavigation();
@@ -25,17 +25,15 @@ function AuthContent({ onAuthenticate, isLogin }) {
 	return (
 		<View style={styles.container}>
 			<AuthForm onSubmit={submitHandler} isLogin={isLogin} />
-			<View>
-				<Button
-					mode="text"
-					onPress={switchAuthMode}
-					textColor={theme.colors.linkColor}
-				>
-					{isLogin
-						? templates.createNewUserNavigationLink
-						: templates.loginNavigationLink}
-				</Button>
-			</View>
+			<Button
+				mode="text"
+				onPress={switchAuthMode}
+				textColor={theme.colors.linkColor}
+			>
+				{isLogin
+					? locale.createNewUserNavigationLink
+					: locale.loginNavigationLink}
+			</Button>
 		</View>
 	);
 }

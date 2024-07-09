@@ -4,39 +4,39 @@ import { useForm, Controller } from "react-hook-form";
 import Input from "../ui/Form/Input";
 import { Button } from "react-native-paper";
 // constants
-import { templates } from "../../constants/locale";
+import { locale } from "../../constants/locale";
 
 const validationRules = {
 	email: {
 		minLength: {
 			value: 10,
-			message: templates.emailValidationErrorMinLength,
+			message: locale.emailValidationErrorMinLength,
 		},
 		maxLength: {
 			value: 50,
-			message: templates.emailValidationErrorMaxLength,
+			message: locale.emailValidationErrorMaxLength,
 		},
 		required: {
 			value: true,
-			message: templates.emailValidationErrorRequired,
+			message: locale.emailValidationErrorRequired,
 		},
 		pattern: {
 			value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-			message: templates.emailValidationErrorInvalidFormat,
+			message: locale.emailValidationErrorInvalidFormat,
 		},
 	},
 	password: {
 		maxLength: {
 			value: 20,
-			message: templates.passwordValidationErrorMaxLength,
+			message: locale.passwordValidationErrorMaxLength,
 		},
 		required: {
 			value: true,
-			message: templates.passwordValidationErrorRequired,
+			message: locale.passwordValidationErrorRequired,
 		},
 		minLength: {
 			value: 7,
-			message: templates.passwordValidationErrorMinLength,
+			message: locale.passwordValidationErrorMinLength,
 		},
 	},
 };
@@ -67,7 +67,7 @@ function AuthForm({ onSubmit, isLogin }) {
 				rules={validationRules.email}
 				render={({ field: { onChange, value } }) => (
 					<Input
-						labelText={templates.emailInputFieldLabel}
+						labelText={locale.emailInputFieldLabel}
 						value={value}
 						onChange={onChange}
 						keyboardType="email-address"
@@ -81,7 +81,7 @@ function AuthForm({ onSubmit, isLogin }) {
 				rules={validationRules.password}
 				render={({ field: { onChange, value } }) => (
 					<Input
-						labelText={templates.passwordInputFieldLabel}
+						labelText={locale.passwordInputFieldLabel}
 						value={value}
 						onChange={onChange}
 						secure
@@ -92,7 +92,7 @@ function AuthForm({ onSubmit, isLogin }) {
 			/>
 			<View style={styles.buttonsBox}>
 				<Button mode="contained" onPress={handleSubmit(confirmHandler)}>
-					{isLogin ? templates.login : templates.signUp}
+					{isLogin ? locale.login : locale.signUp}
 				</Button>
 			</View>
 		</View>

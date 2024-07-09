@@ -1,19 +1,18 @@
-import { Text, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useContext, useEffect } from "react";
+import { useTheme, Text } from "react-native-paper";
 // store
 import { TalesContext } from "../store/tales-context";
 // ui
 import Background from "../components/ui/Background";
 import Player from "../components/ui/Player";
-// constants
-import { GlobalStyles } from "../constants/styles";
-
 // components
 import LikePanel from "../components/Tales/LikePanel";
 
 function TaleDetailScreen({ route, navigation }) {
 	const params = route.params;
 	const talesCtx = useContext(TalesContext);
+	const theme = useTheme();
 	const { data: talesData } = talesCtx.talesState;
 
 	const selectedTale = talesData.filter((tale) => tale.id === params.taleId)[0];
@@ -24,7 +23,7 @@ function TaleDetailScreen({ route, navigation }) {
 	useEffect(() => {
 		navigation.setOptions({
 			title: selectedTale.title,
-			headerTintColor: GlobalStyles.colors.primary1,
+			headerTintColor: theme.colors.fontColor,
 		});
 	}, [selectedTale]);
 
@@ -55,7 +54,16 @@ function TaleDetailScreen({ route, navigation }) {
 		<Background style={styles.container}>
 			<View style={styles.headlineRow}>
 				<View style={styles.titleBox}>
-					<Text style={styles.title}>{selectedTale.title}</Text>
+					<Text
+						variant="titleLarge"
+						style={{
+							textAlign: "center",
+							color: theme.colors.fontColor,
+							width: 200,
+						}}
+					>
+						{selectedTale.title}
+					</Text>
 				</View>
 				<View style={styles.likeBox}>
 					<LikePanel switched={selectedTale.liked} id={selectedTale.id} />
@@ -82,11 +90,6 @@ const styles = StyleSheet.create({
 		marginVertical: 20,
 		flex: 1,
 	},
-	title: {
-		color: GlobalStyles.colors.primary1,
-		textAlign: "center",
-		fontSize: 20,
-	},
 	playerBox: {
 		flex: 1,
 	},
@@ -101,10 +104,10 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	headlineRow: {
-		flex: 0.5,
+		flex: 1,
 		flexDirection: "row",
 	},
 	playerRow: {
-		flex: 5,
+		flex: 7,
 	},
 });

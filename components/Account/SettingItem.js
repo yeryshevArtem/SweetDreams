@@ -1,30 +1,32 @@
-import { Text, StyleSheet, Pressable, View } from "react-native";
+import { StyleSheet, Pressable, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-// constants
-import { GlobalStyles } from "../../constants/styles";
+import { useTheme, Text } from "react-native-paper";
 
 function SettingItem({ title, pressHandler, icon }) {
+	// theme
+	const theme = useTheme();
 	return (
 		<Pressable
 			onPress={pressHandler}
 			style={({ pressed }) => [styles.container, pressed && styles.pressed]}
 		>
-			<View style={styles.settingItemBox}>
+			<View
+				style={[
+					styles.settingItemBox,
+					{ backgroundColor: theme.colors.primary },
+				]}
+			>
 				<View style={styles.iconBox}>
-					<Ionicons
-						name={icon}
-						size={30}
-						color={GlobalStyles.colors.primary2}
-					/>
+					<Ionicons name={icon} size={30} color={theme.colors.secondary} />
 				</View>
 				<View style={styles.textBox}>
-					<Text style={styles.title}>{title}</Text>
+					<Text style={{ color: theme.colors.secondary }}>{title}</Text>
 				</View>
 				<View style={styles.actionBox}>
 					<Ionicons
 						name="arrow-forward"
 						size={30}
-						color={GlobalStyles.colors.primary2}
+						color={theme.colors.secondary}
 					/>
 				</View>
 			</View>
@@ -44,14 +46,9 @@ const styles = StyleSheet.create({
 	settingItemBox: {
 		padding: 20,
 		borderRadius: 15,
-		backgroundColor: GlobalStyles.colors.primary4,
 		marginVertical: 10,
 		marginHorizontal: 10,
 		flexDirection: "row",
-	},
-	title: {
-		color: GlobalStyles.colors.primary2,
-		fontWeight: "bold",
 	},
 	iconBox: {
 		flex: 0.5,

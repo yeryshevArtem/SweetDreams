@@ -8,7 +8,7 @@ import { updateTale } from "../../util/http";
 import { TalesContext } from "../../store/tales-context";
 import { AuthContext } from "../../store/auth-context";
 // constants
-import { templates } from "../../constants/locale";
+import { locale } from "../../constants/locale";
 
 function LikePanel({ switched, id }) {
 	const talesCtx = useContext(TalesContext);
@@ -30,7 +30,7 @@ function LikePanel({ switched, id }) {
 
 			talesCtx.updateTaleSuccess(updatedTale);
 		} catch (err) {
-			Alert.alert(templates.likePanelErrorTitle, templates.likePanelErrorBody);
+			Alert.alert(locale.likePanelErrorTitle, locale.likePanelErrorBody);
 		}
 	}
 
@@ -41,7 +41,7 @@ function LikePanel({ switched, id }) {
 				size={35}
 				icon="heart-circle"
 				iconColor={
-					switched ? theme.colors.primary : theme.colors.inactiveBtnColor
+					switched ? theme.colors.likeIconActive : theme.colors.likeIconInactive
 				}
 			/>
 		</View>

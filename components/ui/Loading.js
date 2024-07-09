@@ -7,7 +7,7 @@ function Loading({ size = "large" }) {
 		<View style={styles.container}>
 			<ActivityIndicator
 				animating={true}
-				color={theme.colors.primary}
+				color={theme.colors.secondary}
 				size={size}
 			/>
 		</View>

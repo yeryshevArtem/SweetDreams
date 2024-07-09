@@ -12,7 +12,7 @@ import { AuthContext } from "../store/auth-context";
 import Background from "../components/ui/Background";
 import Loading from "../components/ui/Loading";
 // constants
-import { templates } from "../constants/locale";
+import { locale } from "../constants/locale";
 
 function AllTalesScreen() {
 	const talesCtx = useContext(TalesContext);
@@ -41,7 +41,7 @@ function AllTalesScreen() {
 		return (
 			<Background style={styles.container}>
 				<View style={styles.errorContainer}>
-					<Error message={templates.allTalesError} onConfirm={closeError} />
+					<Error message={locale.allTalesError} onConfirm={closeError} />
 				</View>
 			</Background>
 		);

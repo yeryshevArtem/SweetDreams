@@ -9,12 +9,12 @@ import {
 	PaperProvider,
 } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "react-native-paper";
 // screens
 import AllTalesScreen from "./screens/AllTalesScreen";
 import TaleDetailScreen from "./screens/TaleDetailScreen";
 import FavouriteTalesScreen from "./screens/FavouriteTalesScreen";
 import ProfileScreen from "./screens/ProfileScreen";
-import { GlobalStyles } from "./constants/styles";
 // auth
 import LoginScreen from "./screens/LoginScreen";
 import SignUpScreen from "./screens/SignUpScreen";
@@ -25,23 +25,24 @@ import { AuthContext } from "./store/auth-context";
 // ui
 import Loading from "./components/ui/Loading";
 // constants
-import { templates } from "./constants/locale";
+import { locale } from "./constants/locale";
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function AuthStack() {
+	const theme = useTheme();
 	return (
 		<Stack.Navigator>
 			<Stack.Screen
 				name="Signup"
 				component={SignUpScreen}
 				options={{
-					headerTitle: templates.signUp,
+					headerTitle: locale.signUp,
 					headerStyle: {
-						backgroundColor: GlobalStyles.colors.primary2,
+						backgroundColor: theme.colors.primary,
 					},
-					headerTintColor: GlobalStyles.colors.primary1,
+					headerTintColor: theme.colors.fontColor,
 				}}
 			/>
 			<Stack.Screen
@@ -49,9 +50,9 @@ function AuthStack() {
 				component={LoginScreen}
 				options={{
 					headerStyle: {
-						backgroundColor: GlobalStyles.colors.primary2,
+						backgroundColor: theme.colors.primary,
 					},
-					headerTintColor: GlobalStyles.colors.primary1,
+					headerTintColor: theme.colors.fontColor,
 				}}
 			/>
 		</Stack.Navigator>
@@ -59,6 +60,7 @@ function AuthStack() {
 }
 
 function TalesOverviewScreen() {
+	const theme = useTheme();
 	return (
 		<Stack.Navigator>
 			<Stack.Screen
@@ -66,9 +68,9 @@ function TalesOverviewScreen() {
 				component={AllTalesScreen}
 				options={{
 					headerStyle: {
-						backgroundColor: GlobalStyles.colors.primary2,
+						backgroundColor: theme.colors.primary,
 					},
-					headerTintColor: GlobalStyles.colors.primary1,
+					headerTintColor: theme.colors.fontColor,
 					headerShown: false,
 				}}
 			/>
@@ -77,7 +79,7 @@ function TalesOverviewScreen() {
 				component={TaleDetailScreen}
 				options={{
 					headerStyle: {
-						backgroundColor: GlobalStyles.colors.primary2,
+						backgroundColor: theme.colors.primary,
 					},
 					presentation: "modal",
 				}}
@@ -87,58 +89,59 @@ function TalesOverviewScreen() {
 }
 
 function AuthenticatedStack() {
+	const theme = useTheme();
 	return (
 		<TalesContextProvider>
 			<BottomTab.Navigator
 				screenOptions={{
-					tabBarActiveTintColor: GlobalStyles.colors.primary1,
-					tabBarInactiveTintColor: GlobalStyles.colors.primary3,
-					tabBarStyle: { backgroundColor: GlobalStyles.colors.primary2 },
+					tabBarActiveTintColor: theme.colors.tabBarActiveTintColor,
+					tabBarInactiveTintColor: theme.colors.tabBarInactiveTintColor,
+					tabBarStyle: { backgroundColor: theme.colors.primary },
 				}}
 			>
 				<BottomTab.Screen
 					name="Home"
 					component={TalesOverviewScreen}
 					options={{
-						title: templates.homePageHeaderTitle,
-						tabBarLabel: templates.homeTabBarLabel,
+						title: locale.homePageHeaderTitle,
+						tabBarLabel: locale.homeTabBarLabel,
 						tabBarIcon: ({ color, size }) => (
 							<Ionicons color={color} size={size} name="home" />
 						),
 						headerStyle: {
-							backgroundColor: GlobalStyles.colors.primary2,
+							backgroundColor: theme.colors.primary,
 						},
-						headerTintColor: GlobalStyles.colors.primary1,
+						headerTintColor: theme.colors.fontColor,
 					}}
 				/>
 				<BottomTab.Screen
 					name="Favourites"
 					component={FavouriteTalesScreen}
 					options={{
-						title: templates.favouritesPageHeaderTitle,
-						tabBarLabel: templates.favouritesTabBarLabel,
+						title: locale.favouritesPageHeaderTitle,
+						tabBarLabel: locale.favouritesTabBarLabel,
 						tabBarIcon: ({ color, size }) => (
 							<Ionicons size={size} color={color} name="heart" />
 						),
 						headerStyle: {
-							backgroundColor: GlobalStyles.colors.primary2,
+							backgroundColor: theme.colors.primary,
 						},
-						headerTintColor: GlobalStyles.colors.primary1,
+						headerTintColor: theme.colors.fontColor,
 					}}
 				/>
 				<BottomTab.Screen
 					name="Profile"
 					component={ProfileScreen}
 					options={{
-						title: templates.profilePageHeaderTitle,
-						tabBarLabel: templates.profileTabBarLabel,
+						title: locale.profilePageHeaderTitle,
+						tabBarLabel: locale.profileTabBarLabel,
 						tabBarIcon: ({ color, size }) => (
 							<Ionicons size={size} color={color} name="settings" />
 						),
 						headerStyle: {
-							backgroundColor: GlobalStyles.colors.primary2,
+							backgroundColor: theme.colors.primary,
 						},
-						headerTintColor: GlobalStyles.colors.primary1,
+						headerTintColor: theme.colors.fontColor,
 					}}
 				/>
 			</BottomTab.Navigator>
@@ -189,11 +192,23 @@ const theme = {
 	...DefaultTheme,
 	colors: {
 		...DefaultTheme.colors,
-		primary: "#A5FF90",
-		secondary: "#1F1840",
+		primary: "#1F1840",
+		secondary: "#E3720D",
+		// tab bar
+		tabBarActiveTintColor: "#FFFFFF",
+		tabBarInactiveTintColor: "#B7B4C6",
+		// font
+		fontColor: "#FFFFFF",
+		// link
 		linkColor: "#FFFFFF",
-		inactiveBtnColor: "#FFFFFF",
-		errorTextColor: "#FFFFFF",
+		// like component
+		likeIconActive: "#E3720D",
+		likeIconInactive: "#FFFFFF",
+		// seekbar
+		seekbarMinTrackColor: "#FFFFFF",
+		seekbarMaxTrackColor: "#E3720D",
+		// player
+		playerButtonGroupColor: "#FFFFFF",
 	},
 };
 

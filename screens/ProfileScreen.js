@@ -5,7 +5,7 @@ import Background from "../components/ui/Background";
 // components
 import SettingsList from "../components/Account/SettingsList";
 // constants
-import { templates } from "../constants/locale";
+import { locale } from "../constants/locale";
 // store
 import { AuthContext } from "../store/auth-context";
 
@@ -15,7 +15,7 @@ function ProfileScreen() {
 	const settingsOptions = [
 		// {
 		// 	id: "accountDetails",
-		// 	title: templates.profileSettingsAccountDetailTitle,
+		// 	title: locale.profileSettingsAccountDetailTitle,
 		// 	callbackFn: () => {
 		// 		console.log("Naviate to account details");
 		// 	},
@@ -23,23 +23,23 @@ function ProfileScreen() {
 		// },
 		{
 			id: "support",
-			title: templates.profileSettingsCustomerSupportTitle,
+			title: locale.profileSettingsCustomerSupportTitle,
 			callbackFn: () => {
-				const email = templates.supportEmail;
-				const subject = templates.supportSubject;
-				const body = templates.supportBody;
+				const email = locale.supportEmail;
+				const subject = locale.supportSubject;
+				const body = locale.supportBody;
 
 				const url = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
 				Linking.openURL(url).catch((err) =>
-					Alert.alert(templates.supportErrorTitle, templates.supportErrorBody),
+					Alert.alert(locale.supportErrorTitle, locale.supportErrorBody),
 				);
 			},
 			icon: "chatbox",
 		},
 		{
 			id: "logout",
-			title: templates.profileSettingsLogoutTitle,
+			title: locale.profileSettingsLogoutTitle,
 			callbackFn: () => {
 				authCtx.logout();
 			},

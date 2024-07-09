@@ -1,10 +1,10 @@
 // ui
 import { Banner, useTheme } from "react-native-paper";
 // constants
-import { templates } from "../../constants/locale";
+import { locale } from "../../constants/locale";
 
 function ErrorAlert({
-	message = templates.errorAlertDefaultBody,
+	message = locale.errorAlertDefaultBody,
 	size = 200,
 	actions = [],
 }) {

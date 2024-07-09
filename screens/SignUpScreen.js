@@ -7,7 +7,7 @@ import Loading from "../components/ui/Loading";
 // utils
 import { authorize } from "../util/http";
 // constants
-import { templates } from "../constants/locale";
+import { locale } from "../constants/locale";
 // store
 import { AuthContext } from "../store/auth-context";
 
@@ -26,7 +26,7 @@ function SignUpScreen() {
 			authCtx.authenticateSuccess(jwt);
 		} catch (err) {
 			authCtx.authenticateError(err);
-			Alert.alert(templates.signUpErrorTitle, templates.signUpErrorBody);
+			Alert.alert(locale.signUpErrorTitle, locale.signUpErrorBody);
 		}
 	}
 

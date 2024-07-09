@@ -10,7 +10,7 @@ import Loading from "./Loading";
 import { IconButton, useTheme } from "react-native-paper";
 import SeekBar from "./SeekBar";
 // constants
-import { templates } from "../../constants/locale";
+import { locale } from "../../constants/locale";
 
 function Player({
 	imageUrl,
@@ -134,7 +134,7 @@ function Player({
 						onLoadEnd={() => setIsFetching(false)}
 					/>
 				)}
-				{error && !isFetching && <Error message={templates.playerCoverError} />}
+				{error && !isFetching && <Error message={locale.playerCoverError} />}
 				<View style={styles.seekBarBox}>
 					<SeekBar
 						maxVal={status.durationMillis}
@@ -147,19 +147,19 @@ function Player({
 						onPress={playBack}
 						mode="text"
 						icon="skip-previous-circle"
-						iconColor={theme.colors.primary}
+						iconColor={theme.colors.playerButtonGroupColor}
 						size={75}
 					/>
 					<IconButton
 						onPress={handlePlayPause}
 						mode="text"
-						iconColor={theme.colors.primary}
+						iconColor={theme.colors.playerButtonGroupColor}
 						size={75}
 						icon={status.isPlaying ? "pause-circle" : "play-circle"}
 					/>
 					<IconButton
 						onPress={playForward}
-						iconColor={theme.colors.primary}
+						iconColor={theme.colors.playerButtonGroupColor}
 						size={75}
 						mode="text"
 						icon="skip-next-circle"

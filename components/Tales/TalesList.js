@@ -3,7 +3,7 @@ import TaleItem from "./TaleItem";
 // ui
 import Empty from "../ui/Empty";
 // constants
-import { templates } from "../../constants/locale";
+import { locale } from "../../constants/locale";
 
 function renderAllTalesItem({ item }) {
 	return (
@@ -35,7 +35,7 @@ function TalesList({ allTales, horizontal = false }) {
 					{...verticalProps}
 				/>
 			) : (
-				<Empty>{templates.talesEmpty}</Empty>
+				<Empty>{locale.talesEmpty}</Empty>
 			)}
 		</View>
 	);

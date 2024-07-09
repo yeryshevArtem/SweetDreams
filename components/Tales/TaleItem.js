@@ -9,7 +9,7 @@ import Loading from "../ui/Loading";
 import Error from "../ui/ErrorAlert";
 import { Text, useTheme } from "react-native-paper";
 // constants
-import { templates } from "../../constants/locale";
+import { locale } from "../../constants/locale";
 
 function TaleItem({ title, imageUrl, id }) {
 	const [imgUri, setImgUri] = useState("");
@@ -53,13 +53,13 @@ function TaleItem({ title, imageUrl, id }) {
 					/>
 				)}
 				{error && !isFetching && (
-					<Error message={templates.taleImageError} size={150} />
+					<Error message={locale.taleImageError} size={150} />
 				)}
 			</View>
 			<View style={styles.titleBox}>
 				<Text
 					variant="bodyMedium"
-					style={{ color: theme.colors.primary, fontWeight: 700 }}
+					style={{ color: theme.colors.fontColor, fontWeight: 700 }}
 				>
 					{title}
 				</Text>

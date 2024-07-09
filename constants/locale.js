@@ -1,4 +1,4 @@
-export const templates = {
+export const locale = {
 	supportEmail: "artem.yeryshev@gmail.com",
 	supportBody: "Dear Support Team,",
 	supportSubject: "Customer Support",

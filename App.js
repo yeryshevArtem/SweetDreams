@@ -209,6 +209,10 @@ const theme = {
 		seekbarMaxTrackColor: "#E3720D",
 		// player
 		playerButtonGroupColor: "#FFFFFF",
+		// error banner
+		errorBannerContentColor: '#FFFFFF',
+		errorBannerIconColor: '#FFFFFF',
+		errorBannerBackgroundColor: '#E34F43'
 	},
 };
 

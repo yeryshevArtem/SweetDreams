@@ -7,7 +7,7 @@ import { storage } from "../../firebase/storage";
 // ui
 import Loading from "../ui/Loading";
 import Error from "../ui/ErrorAlert";
-import { Text, useTheme } from "react-native-paper";
+import Badge from "../ui/Badge";
 // constants
 import { locale } from "../../constants/locale";
 
@@ -17,8 +17,6 @@ function TaleItem({ title, imageUrl, id }) {
 	const [error, setError] = useState(null);
 
 	const navigation = useNavigation();
-	// theme
-	const theme = useTheme();
 
 	useEffect(() => {
 		const imgReference = ref(storage, imageUrl);
@@ -57,12 +55,7 @@ function TaleItem({ title, imageUrl, id }) {
 				)}
 			</View>
 			<View style={styles.titleBox}>
-				<Text
-					variant="bodyMedium"
-					style={[styles.textShadow, { color: theme.colors.fontColor }]}
-				>
-					{title}
-				</Text>
+				<Badge>{title}</Badge>
 			</View>
 		</Pressable>
 	);
@@ -95,10 +88,5 @@ const styles = StyleSheet.create({
 		width: 150,
 		height: 150,
 		borderRadius: 10,
-	},
-	textShadow: {
-		textShadowColor: "rgba(0, 0, 0, 0.75)",
-		textShadowOffset: { width: -1, height: 1 },
-		textShadowRadius: 10,
 	},
 });

@@ -36,11 +36,11 @@ function TalesList({ allTales, horizontal = false }) {
 				/>
 			) : (
 				<View style={styles.alertContainer}>
-					<Alert 
-						message={locale.talesEmpty} 
-						type={enums.alertTypes.INFO} 
-						width='100%'
-						contentSize={25} 
+					<Alert
+						message={locale.talesEmpty}
+						type={enums.alertTypes.INFO}
+						width="100%"
+						contentSize={25}
 						iconSize={50}
 					/>
 				</View>
@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	alertContainer: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		paddingHorizontal: 20
-	}
+		justifyContent: "center",
+		alignItems: "center",
+		paddingHorizontal: 20,
+	},
 });

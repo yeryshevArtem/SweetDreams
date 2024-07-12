@@ -51,12 +51,12 @@ function TaleItem({ title, imageUrl, id }) {
 					/>
 				)}
 				{error && !isFetching && (
-					<Alert 
-						message={locale.taleImageError} 
-						width={150} 
-						height={150} 
+					<Alert
+						message={locale.taleImageError}
+						width={150}
+						height={150}
 						type={enums.alertTypes.ERROR}
-						contentSize={17} 
+						contentSize={17}
 					/>
 				)}
 			</View>

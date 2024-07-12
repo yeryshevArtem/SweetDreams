@@ -50,7 +50,7 @@ export const locale = {
 
 export const enums = {
 	alertTypes: {
-		INFO: 'INFO',
-		ERROR: 'ERROR'
-	}
+		INFO: "INFO",
+		ERROR: "ERROR",
+	},
 };

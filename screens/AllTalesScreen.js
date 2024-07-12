@@ -41,10 +41,10 @@ function AllTalesScreen() {
 		return (
 			<Background style={styles.container}>
 				<View style={styles.errorContainer}>
-					<Alert 
-						message={locale.allTalesError} 
-						onConfirm={closeError} 
-						type={enums.alertTypes.ERROR} 
+					<Alert
+						message={locale.allTalesError}
+						onConfirm={closeError}
+						type={enums.alertTypes.ERROR}
 					/>
 				</View>
 			</Background>

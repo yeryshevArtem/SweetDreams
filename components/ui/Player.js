@@ -134,7 +134,13 @@ function Player({
 						onLoadEnd={() => setIsFetching(false)}
 					/>
 				)}
-				{error && !isFetching && <Alert message={locale.playerCoverError} type={enums.alertTypes.ERROR} contentSize={25} />}
+				{error && !isFetching && (
+					<Alert
+						message={locale.playerCoverError}
+						type={enums.alertTypes.ERROR}
+						contentSize={25}
+					/>
+				)}
 				<View style={styles.seekBarBox}>
 					<SeekBar
 						maxVal={status.durationMillis}

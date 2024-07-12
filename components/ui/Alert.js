@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 import { Banner, useTheme, Text, Icon } from "react-native-paper";
 // constants
 import { locale, enums } from "../../constants/locale";
@@ -10,20 +10,19 @@ function Alert({
 	actions = [],
 	iconSize = 30,
 	type = enums.alertTypes.INFO,
-	contentSize = 15
+	contentSize = 15,
 }) {
 	// theme
 	const theme = useTheme();
 
 	const calculateBannerProps = (type) => {
-		switch(type) {
+		switch (type) {
 			case enums.alertTypes.ERROR: {
 				return {
 					backgroundColor: theme.colors.errorBannerBackgroundColor,
 					iconColor: theme.colors.errorBannerIconColor,
 					contentColor: theme.colors.errorBannerContentColor,
-					icon: "alert-circle-outline"
-
+					icon: "alert-circle-outline",
 				};
 			}
 			case enums.alertTypes.INFO: {
@@ -31,7 +30,7 @@ function Alert({
 					backgroundColor: theme.colors.infoBannerBackgroundColor,
 					iconColor: theme.colors.infoBannerIconColor,
 					contentColor: theme.colors.infoBannerContentColor,
-					icon: "information-outline"
+					icon: "information-outline",
 				};
 			}
 		}
@@ -40,7 +39,6 @@ function Alert({
 	const bannerProps = useMemo(() => {
 		return calculateBannerProps(type);
 	}, []);
-
 
 	return (
 		<Banner
@@ -51,7 +49,7 @@ function Alert({
 				width,
 				height,
 				backgroundColor: bannerProps.backgroundColor,
-				borderRadius: 20
+				borderRadius: 20,
 			}}
 			icon={({ size }) => {
 				return (

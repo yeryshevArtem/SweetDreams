@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 // util
 import { fetchAllTales } from "../util/http";
 // components
-import Error from "../components/ui/ErrorAlert";
+import Alert from "../components/ui/Alert";
 import TalesList from "../components/Tales/TalesList";
 // store
 import { TalesContext } from "../store/tales-context";
@@ -41,7 +41,11 @@ function AllTalesScreen() {
 		return (
 			<Background style={styles.container}>
 				<View style={styles.errorContainer}>
-					<Error message={locale.allTalesError} onConfirm={closeError} />
+					<Alert 
+						message={locale.allTalesError} 
+						onConfirm={closeError} 
+						type={enums.alertTypes.ERROR} 
+					/>
 				</View>
 			</Background>
 		);

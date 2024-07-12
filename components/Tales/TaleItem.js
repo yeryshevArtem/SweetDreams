@@ -6,10 +6,10 @@ import { useNavigation } from "@react-navigation/native";
 import { storage } from "../../firebase/storage";
 // ui
 import Loading from "../ui/Loading";
-import Error from "../ui/ErrorAlert";
+import Alert from "../ui/Alert";
 import Badge from "../ui/Badge";
 // constants
-import { locale } from "../../constants/locale";
+import { locale, enums } from "../../constants/locale";
 
 function TaleItem({ title, imageUrl, id }) {
 	const [imgUri, setImgUri] = useState("");
@@ -51,7 +51,13 @@ function TaleItem({ title, imageUrl, id }) {
 					/>
 				)}
 				{error && !isFetching && (
-					<Error message={locale.taleImageError} size={150} />
+					<Alert 
+						message={locale.taleImageError} 
+						width={150} 
+						height={150} 
+						type={enums.alertTypes.ERROR}
+						contentSize={17} 
+					/>
 				)}
 			</View>
 			<View style={styles.titleBox}>

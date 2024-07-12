@@ -5,12 +5,12 @@ import { Audio } from "expo-av";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase/storage";
 // ui
-import Error from "./ErrorAlert";
+import Alert from "./Alert";
 import Loading from "./Loading";
 import { IconButton, useTheme } from "react-native-paper";
 import SeekBar from "./SeekBar";
 // constants
-import { locale } from "../../constants/locale";
+import { locale, enums } from "../../constants/locale";
 
 function Player({
 	imageUrl,
@@ -134,7 +134,7 @@ function Player({
 						onLoadEnd={() => setIsFetching(false)}
 					/>
 				)}
-				{error && !isFetching && <Error message={locale.playerCoverError} />}
+				{error && !isFetching && <Alert message={locale.playerCoverError} type={enums.alertTypes.ERROR} contentSize={25} />}
 				<View style={styles.seekBarBox}>
 					<SeekBar
 						maxVal={status.durationMillis}

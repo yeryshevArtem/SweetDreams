@@ -47,3 +47,10 @@ export const locale = {
 	talesEmpty:
 		"Oops... Seems like you do not have any tale. Please add at first.",
 };
+
+export const enums = {
+	alertTypes: {
+		INFO: 'INFO',
+		ERROR: 'ERROR'
+	}
+};

@@ -1,9 +1,9 @@
 import { FlatList, View, StyleSheet } from "react-native";
 import TaleItem from "./TaleItem";
 // ui
-import Empty from "../ui/Empty";
+import Alert from "../ui/Alert";
 // constants
-import { locale } from "../../constants/locale";
+import { locale, enums } from "../../constants/locale";
 
 function renderAllTalesItem({ item }) {
 	return (
@@ -35,7 +35,15 @@ function TalesList({ allTales, horizontal = false }) {
 					{...verticalProps}
 				/>
 			) : (
-				<Empty>{locale.talesEmpty}</Empty>
+				<View style={styles.alertContainer}>
+					<Alert 
+						message={locale.talesEmpty} 
+						type={enums.alertTypes.INFO} 
+						width='100%'
+						contentSize={25} 
+						iconSize={50}
+					/>
+				</View>
 			)}
 		</View>
 	);
@@ -47,4 +55,9 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
+	alertContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		paddingHorizontal: 20
+	}
 });

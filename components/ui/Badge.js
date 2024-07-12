@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
 import { useTheme, Badge } from "react-native-paper";
 
-function BadgeUI({ children }) {
+function BadgeUI({ children, size = 30 }) {
 	const theme = useTheme();
 	return (
 		<Badge
 			visible
-			size={30}
+			size={size}
 			style={[
 				styles.badge,
 				{

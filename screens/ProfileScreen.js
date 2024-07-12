@@ -35,7 +35,7 @@ function ProfileScreen() {
 					Alert.alert(locale.supportErrorTitle, locale.supportErrorBody),
 				);
 			},
-			icon: "chatbox",
+			icon: "chat-question-outline",
 		},
 		{
 			id: "logout",
@@ -43,7 +43,7 @@ function ProfileScreen() {
 			callbackFn: () => {
 				authCtx.logout();
 			},
-			icon: "exit",
+			icon: "exit-to-app",
 		},
 	];
 

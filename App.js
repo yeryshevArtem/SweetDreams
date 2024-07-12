@@ -7,9 +7,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import {
 	MD3LightTheme as DefaultTheme,
 	PaperProvider,
+	Icon,
+	useTheme,
 } from "react-native-paper";
-import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "react-native-paper";
 // screens
 import AllTalesScreen from "./screens/AllTalesScreen";
 import TaleDetailScreen from "./screens/TaleDetailScreen";
@@ -106,7 +106,7 @@ function AuthenticatedStack() {
 						title: locale.homePageHeaderTitle,
 						tabBarLabel: locale.homeTabBarLabel,
 						tabBarIcon: ({ color, size }) => (
-							<Ionicons color={color} size={size} name="home" />
+							<Icon color={color} size={size} source="home" />
 						),
 						headerStyle: {
 							backgroundColor: theme.colors.primary,
@@ -121,7 +121,7 @@ function AuthenticatedStack() {
 						title: locale.favouritesPageHeaderTitle,
 						tabBarLabel: locale.favouritesTabBarLabel,
 						tabBarIcon: ({ color, size }) => (
-							<Ionicons size={size} color={color} name="heart" />
+							<Icon size={size} color={color} source="heart" />
 						),
 						headerStyle: {
 							backgroundColor: theme.colors.primary,
@@ -136,7 +136,7 @@ function AuthenticatedStack() {
 						title: locale.profilePageHeaderTitle,
 						tabBarLabel: locale.profileTabBarLabel,
 						tabBarIcon: ({ color, size }) => (
-							<Ionicons size={size} color={color} name="settings" />
+							<Icon size={size} color={color} source="account" />
 						),
 						headerStyle: {
 							backgroundColor: theme.colors.primary,

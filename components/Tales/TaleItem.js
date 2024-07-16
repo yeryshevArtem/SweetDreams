@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import { View, StyleSheet, Image, Pressable } from "react-native";
 import { ref, getDownloadURL } from "firebase/storage";
 import { useNavigation } from "@react-navigation/native";
 // firebase
 import { storage } from "../../firebase/storage";
 // ui
 import Loading from "../ui/Loading";
-import Error from "../ui/ErrorAlert";
+import Alert from "../ui/Alert";
+import Badge from "../ui/Badge";
 // constants
-import { GlobalStyles } from "../../constants/styles";
-import { templates } from "../../constants/templates";
+import { locale, enums } from "../../constants/locale";
 
 function TaleItem({ title, imageUrl, id }) {
 	const [imgUri, setImgUri] = useState("");
@@ -50,10 +50,18 @@ function TaleItem({ title, imageUrl, id }) {
 						onLoadEnd={() => setIsFetching(false)}
 					/>
 				)}
-				{error && !isFetching && <Error message={templates.taleImageError} />}
+				{error && !isFetching && (
+					<Alert
+						message={locale.taleImageError}
+						width={150}
+						height={150}
+						type={enums.alertTypes.ERROR}
+						contentSize={17}
+					/>
+				)}
 			</View>
 			<View style={styles.titleBox}>
-				<Text style={styles.title}>{title}</Text>
+				<Badge>{title}</Badge>
 			</View>
 		</Pressable>
 	);
@@ -81,11 +89,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginVertical: 10,
 		width: 150,
-	},
-	title: {
-		color: GlobalStyles.colors.primary1,
-		fontSize: 15,
-		fontWeight: "700",
 	},
 	image: {
 		width: 150,

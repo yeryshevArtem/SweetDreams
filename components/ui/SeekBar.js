@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
 import Slider from "@react-native-community/slider";
+import { useTheme } from "react-native-paper";
 // utils
 import { formatTime } from "../../util/time";
-// constants
-import { GlobalStyles } from "../../constants/styles";
 
 function SeekBar({ maxVal, val, onChange }) {
+	const theme = useTheme();
 	return (
 		<View style={styles.container}>
 			<Slider
@@ -13,10 +13,10 @@ function SeekBar({ maxVal, val, onChange }) {
 				value={val}
 				maximumValue={maxVal}
 				onValueChange={onChange}
-				minimumTrackTintColor={GlobalStyles.colors.primary1}
-				maximumTrackTintColor={GlobalStyles.colors.primary4}
+				minimumTrackTintColor={theme.colors.seekbarMinTrackColor}
+				maximumTrackTintColor={theme.colors.seekbarMaxTrackColor}
 			/>
-			<Text style={styles.timeline}>
+			<Text style={[styles.timeline, { color: theme.colors.fontColor }]}>
 				{formatTime(val)} / {formatTime(maxVal)}
 			</Text>
 		</View>
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
 		marginVertical: 25,
 	},
 	timeline: {
-		color: GlobalStyles.colors.primary1,
 		textAlign: "center",
 	},
 	slider: {

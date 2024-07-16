@@ -2,12 +2,13 @@ import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AuthForm from "./AuthForm";
 // ui
-import LinkButton from "../ui/LinkButton";
+import { Button, useTheme } from "react-native-paper";
 // constants
-import { templates } from "../../constants/templates";
+import { locale } from "../../constants/locale";
 
 function AuthContent({ onAuthenticate, isLogin }) {
 	const navigation = useNavigation();
+	const theme = useTheme();
 
 	function switchAuthMode() {
 		const authScreen = isLogin ? "Signup" : "Login";
@@ -24,13 +25,15 @@ function AuthContent({ onAuthenticate, isLogin }) {
 	return (
 		<View style={styles.container}>
 			<AuthForm onSubmit={submitHandler} isLogin={isLogin} />
-			<View>
-				<LinkButton onPress={switchAuthMode}>
-					{isLogin
-						? templates.createNewUserNavigationLink
-						: templates.loginNavigationLink}
-				</LinkButton>
-			</View>
+			<Button
+				mode="text"
+				onPress={switchAuthMode}
+				textColor={theme.colors.linkColor}
+			>
+				{isLogin
+					? locale.createNewUserNavigationLink
+					: locale.loginNavigationLink}
+			</Button>
 		</View>
 	);
 }

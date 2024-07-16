@@ -1,14 +1,17 @@
-import { View, Text, StyleSheet } from "react-native";
-import { GlobalStyles } from "../../constants/styles";
+import { View, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme, Text } from "react-native-paper";
 
 function Empty({ children }) {
+	const theme = useTheme();
 	return (
 		<View style={styles.container}>
 			<View style={styles.iconContainer}>
-				<Ionicons name="sad" size={50} color={GlobalStyles.colors.primary4} />
+				<Ionicons name="sad" size={50} color={theme.colors.secondary} />
 			</View>
-			<Text style={styles.text}>{children}</Text>
+			<Text variant="headlineSmall" style={{ color: theme.colors.fontColor }}>
+				{children}
+			</Text>
 		</View>
 	);
 }
@@ -20,13 +23,7 @@ const styles = StyleSheet.create({
 		marginHorizontal: 20,
 		marginBottom: 20,
 		flex: 1,
-		justifyContent: "center",
 		alignItems: "center",
-	},
-	text: {
-		fontSize: 20,
-		color: GlobalStyles.colors.primary4,
-		fontWeight: "700",
 	},
 	iconContainer: {
 		marginVertical: 20,

@@ -31,6 +31,8 @@ Sweet Dreams is a delightful mobile application designed for children and their 
 ![Empty Screen](./assets/screenshots/empty.jpg)
 ### Login Screen
 ![Login Screen](./assets/screenshots/login.jpg)
+### Validation Screen
+![Validation Screen](./assets/screenshots/validation.jpg)
 ### Player Screen
 ![Player Screen](./assets/screenshots/player.jpg)
 ### Settings Screen

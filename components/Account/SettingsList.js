@@ -1,24 +1,22 @@
-import { FlatList } from "react-native";
+import { List } from "react-native-paper";
 // components
 import SettingItem from "./SettingItem";
 
-function renderSettingsItem({ item }) {
-	return (
-		<SettingItem
-			title={item.title}
-			pressHandler={item.callbackFn}
-			icon={item.icon}
-		/>
-	);
-}
-
 function SettingsList({ data }) {
 	return (
-		<FlatList
-			data={data}
-			renderItem={renderSettingsItem}
-			keyExtractor={(item) => item.id}
-		/>
+		<List.Section>
+			{data.map((item) => {
+				return (
+					<SettingItem
+						key={item.id}
+						title={item.title}
+						pressHandler={item.callbackFn}
+						icon={item.icon}
+						id={item.id}
+					/>
+				);
+			})}
+		</List.Section>
 	);
 }
 

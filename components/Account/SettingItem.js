@@ -13,7 +13,7 @@ function SettingItem({ title, pressHandler, icon }) {
 				<List.Icon color={theme.colors.secondary} icon="arrow-right" />
 			)}
 			style={[styles.settingItemBox, { backgroundColor: theme.colors.primary }]}
-			titleStyle={{ color: theme.colors.secondary }}
+			titleStyle={[styles.title, { color: theme.colors.secondary }]}
 		/>
 	);
 }
@@ -23,8 +23,11 @@ export default SettingItem;
 const styles = StyleSheet.create({
 	settingItemBox: {
 		padding: 20,
-		borderRadius: 15,
+		borderRadius: 25,
 		marginVertical: 10,
 		marginHorizontal: 10,
+	},
+	title: {
+		paddingVertical: 15,
 	},
 });

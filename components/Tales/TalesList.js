@@ -40,8 +40,8 @@ function TalesList({ allTales, horizontal = false }) {
 						message={locale.talesEmpty}
 						type={enums.alertTypes.INFO}
 						width="100%"
-						contentSize={25}
-						iconSize={50}
+						contentSize={17}
+						iconSize={30}
 					/>
 				</View>
 			)}

@@ -12,7 +12,7 @@ import { AuthContext } from "../store/auth-context";
 import Background from "../components/ui/Background";
 import Loading from "../components/ui/Loading";
 // constants
-import { locale } from "../constants/locale";
+import { locale, enums } from "../constants/locale";
 
 function AllTalesScreen() {
 	const talesCtx = useContext(TalesContext);

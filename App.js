@@ -202,13 +202,14 @@ const theme = {
 		// link
 		linkColor: "#FFFFFF",
 		// like component
-		likeIconActive: "#E3720D",
-		likeIconInactive: "#FFFFFF",
+		likeIconActive: "#CE2618",
+		likeIconInactive: "#DBD7DF",
 		// seekbar
 		seekbarMinTrackColor: "#FFFFFF",
 		seekbarMaxTrackColor: "#E3720D",
 		// player
-		playerButtonGroupColor: "#FFFFFF",
+		playerButtonIconColor: "#E3720D",
+		playerButtonContainerColor: "#1F1840",
 		// banner
 		errorBannerContentColor: "#FFFFFF",
 		errorBannerIconColor: "#FFFFFF",

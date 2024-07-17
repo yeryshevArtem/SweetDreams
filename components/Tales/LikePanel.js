@@ -39,7 +39,7 @@ function LikePanel({ switched, id }) {
 			<IconButton
 				onPress={addLikeHandler}
 				size={35}
-				icon="heart-circle"
+				icon="heart"
 				iconColor={
 					switched ? theme.colors.likeIconActive : theme.colors.likeIconInactive
 				}

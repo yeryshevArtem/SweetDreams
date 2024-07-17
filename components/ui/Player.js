@@ -132,6 +132,7 @@ function Player({
 						style={styles.image}
 						onLoadStart={() => setIsFetching(true)}
 						onLoadEnd={() => setIsFetching(false)}
+						resizeMode="stretch"
 					/>
 				)}
 				{error && !isFetching && (
@@ -151,23 +152,26 @@ function Player({
 				<View style={styles.buttonsBox}>
 					<IconButton
 						onPress={playBack}
-						mode="text"
+						mode="contained-tonal"
 						icon="skip-previous-circle"
-						iconColor={theme.colors.playerButtonGroupColor}
+						containerColor={theme.colors.playerButtonContainerColor}
+						iconColor={theme.colors.playerButtonIconColor}
 						size={75}
 					/>
 					<IconButton
 						onPress={handlePlayPause}
-						mode="text"
-						iconColor={theme.colors.playerButtonGroupColor}
+						mode="contained-tonal"
+						containerColor={theme.colors.playerButtonContainerColor}
+						iconColor={theme.colors.playerButtonIconColor}
 						size={75}
 						icon={status.isPlaying ? "pause-circle" : "play-circle"}
 					/>
 					<IconButton
 						onPress={playForward}
-						iconColor={theme.colors.playerButtonGroupColor}
+						containerColor={theme.colors.playerButtonContainerColor}
+						iconColor={theme.colors.playerButtonIconColor}
 						size={75}
-						mode="text"
+						mode="contained-tonal"
 						icon="skip-next-circle"
 					/>
 				</View>
@@ -192,8 +196,7 @@ const styles = StyleSheet.create({
 	image: {
 		width: 250,
 		height: 250,
-		borderRadius: 5,
-		resizeMode: "contain",
+		borderRadius: 15,
 	},
 	seekBarBox: {
 		flex: 2,

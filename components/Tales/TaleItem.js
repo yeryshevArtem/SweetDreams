@@ -44,6 +44,7 @@ function TaleItem({ title, imageUrl, id }) {
 				{isFetching && <Loading />}
 				{imgUri && (
 					<Image
+						resizeMode="stretch"
 						source={{ uri: imgUri }}
 						style={styles.image}
 						onLoadStart={() => setIsFetching(true)}

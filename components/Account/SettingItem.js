@@ -23,11 +23,11 @@ export default SettingItem;
 const styles = StyleSheet.create({
 	settingItemBox: {
 		padding: 20,
-		borderRadius: 25,
+		borderRadius: 15,
 		marginVertical: 10,
 		marginHorizontal: 10,
 	},
 	title: {
-		paddingVertical: 15,
+		paddingVertical: 7.5,
 	},
 });

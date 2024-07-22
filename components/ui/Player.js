@@ -152,26 +152,41 @@ function Player({
 				<View style={styles.buttonsBox}>
 					<IconButton
 						onPress={playBack}
-						mode="contained-tonal"
+						mode="outlined"
 						icon="skip-previous-circle"
 						containerColor={theme.colors.playerButtonContainerColor}
 						iconColor={theme.colors.playerButtonIconColor}
+						style={{
+							borderColor: theme.colors.playerButtonIconColor,
+							borderWidth: 3,
+						}}
+						animated
 						size={75}
 					/>
 					<IconButton
 						onPress={handlePlayPause}
-						mode="contained-tonal"
+						mode="outlined"
+						animated
 						containerColor={theme.colors.playerButtonContainerColor}
 						iconColor={theme.colors.playerButtonIconColor}
 						size={75}
 						icon={status.isPlaying ? "pause-circle" : "play-circle"}
+						style={{
+							borderColor: theme.colors.playerButtonIconColor,
+							borderWidth: 3,
+						}}
 					/>
 					<IconButton
+						animated
 						onPress={playForward}
 						containerColor={theme.colors.playerButtonContainerColor}
 						iconColor={theme.colors.playerButtonIconColor}
 						size={75}
-						mode="contained-tonal"
+						style={{
+							borderColor: theme.colors.playerButtonIconColor,
+							borderWidth: 3,
+						}}
+						mode="outlined"
 						icon="skip-next-circle"
 					/>
 				</View>

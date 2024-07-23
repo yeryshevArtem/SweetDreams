@@ -12,7 +12,10 @@ function SettingItem({ title, pressHandler, icon }) {
 			right={() => (
 				<List.Icon color={theme.colors.secondary} icon="arrow-right" />
 			)}
-			style={[styles.settingItemBox, { backgroundColor: theme.colors.primary }]}
+			style={[
+				styles.settingItemBox,
+				{ backgroundColor: theme.colors.settingItemColor },
+			]}
 			titleStyle={[styles.title, { color: theme.colors.secondary }]}
 		/>
 	);

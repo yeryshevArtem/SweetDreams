@@ -41,7 +41,7 @@ export const locale = {
 	errorAlertDefaultTitle: "An error occured",
 	errorAlertDefaultButtonText: "OK",
 	allTalesError: "Cannot fetch all tales, try to reload the page.",
-	homeTabBarLabel: "Home Page",
+	homeTabBarLabel: "Home",
 	favouritesTabBarLabel: "Favourites",
 	profileTabBarLabel: "Profile",
 	talesEmpty:

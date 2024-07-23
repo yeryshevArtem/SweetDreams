@@ -106,7 +106,7 @@ function AuthenticatedStack() {
 						title: locale.homePageHeaderTitle,
 						tabBarLabel: locale.homeTabBarLabel,
 						tabBarIcon: ({ color, size }) => (
-							<Icon color={color} size={size} source="home" />
+							<Icon color={color} size={size} source="moon-waning-crescent" />
 						),
 						headerStyle: {
 							backgroundColor: theme.colors.primary,
@@ -208,8 +208,7 @@ const theme = {
 		seekbarMinTrackColor: "#FFFFFF",
 		seekbarMaxTrackColor: "#E3720D",
 		// player
-		playerButtonIconColor: "#E3720D",
-		playerButtonContainerColor: "#1F1840",
+		playerButtonIconColor: "#FFFFFF",
 		// banner
 		errorBannerContentColor: "#FFFFFF",
 		errorBannerIconColor: "#FFFFFF",
@@ -217,6 +216,9 @@ const theme = {
 		infoBannerContentColor: "#E3720D",
 		infoBannerIconColor: "#E3720D",
 		infoBannerBackgroundColor: "#E1DF4E",
+
+		// settings
+		settingItemColor: "rgba(31, 24, 64, 0.5)",
 	},
 };
 

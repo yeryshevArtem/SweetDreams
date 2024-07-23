@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { useContext, useEffect } from "react";
 import { useTheme, Text } from "react-native-paper";
+import { LinearGradient } from "expo-linear-gradient";
 // store
 import { TalesContext } from "../store/tales-context";
 // ui
@@ -52,33 +53,38 @@ function TaleDetailScreen({ route, navigation }) {
 
 	return (
 		<Background style={styles.container}>
-			<View style={styles.headlineRow}>
-				<View style={styles.titleBox}>
-					<Text
-						variant="titleLarge"
-						style={{
-							textAlign: "center",
-							color: theme.colors.fontColor,
-							width: 200,
-						}}
-					>
-						{selectedTale.title}
-					</Text>
+			<LinearGradient
+				colors={["#1F1840", "#1856DB", "#06090F"]}
+				style={styles.background}
+			>
+				<View style={styles.headlineRow}>
+					<View style={styles.titleBox}>
+						<Text
+							variant="titleLarge"
+							style={{
+								textAlign: "center",
+								color: theme.colors.fontColor,
+								width: 200,
+							}}
+						>
+							{selectedTale.title}
+						</Text>
+					</View>
+					<View style={styles.likeBox}>
+						<LikePanel switched={selectedTale.liked} id={selectedTale.id} />
+					</View>
 				</View>
-				<View style={styles.likeBox}>
-					<LikePanel switched={selectedTale.liked} id={selectedTale.id} />
+				<View style={styles.playerRow}>
+					<View style={styles.playerBox}>
+						<Player
+							imageUrl={selectedTale.imageUrl}
+							audioUrl={selectedTale.audioUrl}
+							onPlayBack={playBlack}
+							onPlayForward={playNext}
+						/>
+					</View>
 				</View>
-			</View>
-			<View style={styles.playerRow}>
-				<View style={styles.playerBox}>
-					<Player
-						imageUrl={selectedTale.imageUrl}
-						audioUrl={selectedTale.audioUrl}
-						onPlayBack={playBlack}
-						onPlayForward={playNext}
-					/>
-				</View>
-			</View>
+			</LinearGradient>
 		</Background>
 	);
 }
@@ -104,10 +110,19 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	headlineRow: {
-		flex: 1,
+		flex: 0.5,
 		flexDirection: "row",
 	},
 	playerRow: {
-		flex: 7,
+		flex: 6,
+	},
+	background: {
+		position: "absolute",
+		left: 0,
+		right: 0,
+		top: 0,
+		marginVertical: 30,
+		marginHorizontal: 15,
+		borderRadius: 20,
 	},
 });

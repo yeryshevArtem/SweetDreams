@@ -5,7 +5,7 @@ function Background({ children }) {
 		<ImageBackground
 			source={require("../../assets/background.jpg")}
 			style={styles.background}
-			blurRadius={3}
+			blurRadius={7}
 		>
 			{children}
 		</ImageBackground>

@@ -1,8 +1,4 @@
-# Sweet Dreams
-
-Good sleep is a mandatory thing to keep the mental health of your child in a good state. Sweet Dreams can help your child to relax and feel better.
-
-Sweet Dreams is a delightful mobile application designed for children and their parents to explore and listen to popular tales. This application provides a curated list of enchanting stories that are perfect for bedtime or any time of day.
+Sweet Dreams is a delightful mobile application designed for children and their parents to explore and listen to popular fairy tales. This application provides a curated list of enchanting stories that are perfect for bedtime or any time of day.
 
 ## Table of Contents
 
@@ -18,8 +14,8 @@ Sweet Dreams is a delightful mobile application designed for children and their 
 ## Features
 
 - **User-Friendly Interface**: Easy navigation and intuitive design.
-- **Diverse Collection**: Access a wide range of audio tales across different genres.
-- **Favorites**: Save your favorite tales for quick access.
+- **Diverse Collection**: Access a wide range of audio fairy tales across different genres.
+- **Favorites**: Save your favorite stories for quick access.
 
 
 ## Screenshots

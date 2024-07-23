@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 	slider: {
-		width: 350,
+		width: 320,
 		height: 40,
 	},
 });

@@ -152,41 +152,25 @@ function Player({
 				<View style={styles.buttonsBox}>
 					<IconButton
 						onPress={playBack}
-						mode="outlined"
 						icon="skip-previous-circle"
 						containerColor={theme.colors.playerButtonContainerColor}
 						iconColor={theme.colors.playerButtonIconColor}
-						style={{
-							borderColor: theme.colors.playerButtonIconColor,
-							borderWidth: 3,
-						}}
 						animated
 						size={75}
 					/>
 					<IconButton
 						onPress={handlePlayPause}
-						mode="outlined"
 						animated
 						containerColor={theme.colors.playerButtonContainerColor}
 						iconColor={theme.colors.playerButtonIconColor}
 						size={75}
 						icon={status.isPlaying ? "pause-circle" : "play-circle"}
-						style={{
-							borderColor: theme.colors.playerButtonIconColor,
-							borderWidth: 3,
-						}}
 					/>
 					<IconButton
 						animated
 						onPress={playForward}
-						containerColor={theme.colors.playerButtonContainerColor}
 						iconColor={theme.colors.playerButtonIconColor}
 						size={75}
-						style={{
-							borderColor: theme.colors.playerButtonIconColor,
-							borderWidth: 3,
-						}}
-						mode="outlined"
 						icon="skip-next-circle"
 					/>
 				</View>
@@ -207,6 +191,9 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 		flex: 1,
+		paddingTop: 50,
+		paddingHorizontal: 10,
+		borderRadius: 15,
 	},
 	image: {
 		width: 250,
@@ -218,6 +205,6 @@ const styles = StyleSheet.create({
 	},
 	buttonsBox: {
 		flexDirection: "row",
-		flex: 6,
+		flex: 5,
 	},
 });

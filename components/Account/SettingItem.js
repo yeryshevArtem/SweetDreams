@@ -8,15 +8,20 @@ function SettingItem({ title, pressHandler, icon }) {
 		<List.Item
 			title={title}
 			onPress={pressHandler}
-			left={() => <List.Icon color={theme.colors.secondary} icon={icon} />}
+			left={() => (
+				<List.Icon color={theme.colors.settingItemTextColor} icon={icon} />
+			)}
 			right={() => (
-				<List.Icon color={theme.colors.secondary} icon="arrow-right" />
+				<List.Icon
+					color={theme.colors.settingItemTextColor}
+					icon="arrow-right"
+				/>
 			)}
 			style={[
 				styles.settingItemBox,
 				{ backgroundColor: theme.colors.settingItemColor },
 			]}
-			titleStyle={[styles.title, { color: theme.colors.secondary }]}
+			titleStyle={[styles.title, { color: theme.colors.settingItemTextColor }]}
 		/>
 	);
 }

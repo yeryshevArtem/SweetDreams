@@ -132,7 +132,6 @@ function Player({
 						style={styles.image}
 						onLoadStart={() => setIsFetching(true)}
 						onLoadEnd={() => setIsFetching(false)}
-						resizeMode="stretch"
 					/>
 				)}
 				{error && !isFetching && (

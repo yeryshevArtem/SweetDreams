@@ -219,6 +219,7 @@ const theme = {
 
 		// settings
 		settingItemColor: "rgba(31, 24, 64, 0.5)",
+		settingItemTextColor: "#FFFFFF",
 	},
 };
 
